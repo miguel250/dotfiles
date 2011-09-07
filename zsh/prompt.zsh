@@ -12,9 +12,9 @@ git_dirty() {
   else
     if [[ $st == "nothing to commit (working directory clean)" ]]
     then
-      echo " on %{$fg_bold[green]%}$(git_prompt_info)"
+      echo " on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
     else
-      echo " on %{$fg_bold[red]%}$(git_prompt_info)"
+      echo " on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
     fi
   fi
 }
@@ -34,8 +34,12 @@ need_push () {
   then
     echo " "
   else
-    echo " with %{$fg_bold[magenta]%}unpushed"
+    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%}"
   fi
 }
 
-PROMPT='%{$fg[cyan]%}[%~/]$fg[red]%}$(git_dirty)$(need_push)%{$reset_color%}› '
+directory_name(){
+  echo "%{$fg[cyan]%}[%~/]%{$reset_color%}"
+}
+
+PROMPT='$(directory_name)$(git_dirty)$(need_push) › '
