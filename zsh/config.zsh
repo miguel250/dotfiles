@@ -1,7 +1,5 @@
 # automatically enter directories without cd
 setopt auto_cd
-# Make cd push the old directory onto the directory stack.
-setopt auto_pushd
 
 HISTFILE=~/.zsh_history
 HISTSIZE=500
