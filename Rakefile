@@ -14,7 +14,7 @@ task :install do
     overwrite = false
     backup = false
 
-    filename = symlink.split('/').last.split('.symlink')
+    filename = symlink.split('/').last.split('.symlink').last
     target = "#{ENV["HOME"]}/.#{filename}"
 
     if File.exists?(target) || File.symlink?(target)
