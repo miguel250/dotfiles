@@ -1,7 +1,6 @@
 require 'rake'
 
 desc 'Hook dotfile into system'
-
 task :install do
 
   symlinks = Dir.glob('*/**{.symlink}')
@@ -20,7 +19,7 @@ task :install do
 
     if File.exists?(target) || File.symlink?(target)
       unless skip_all || overwrite_all || backup_all
-        print "File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
+        print "File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all "
         case STDIN.gets.chomp
         when 'o' then overwrite = true
         when 'b' then backup = true
@@ -37,7 +36,7 @@ task :install do
 end
 task :remove do
 
-  print "Are you sure you want to uninstall dotfiles? (y/n)"
+  print "Are you sure you want to uninstall dotfiles? (y/n) "
   case STDIN.gets.chomp
   when 'y' then remove = true
   when 'n' then remove = false
@@ -45,8 +44,6 @@ task :remove do
 
   if remove
     symlinks = Dir.glob('*/**{.symlink}')
-    restore = false
-    skip = false
 
     symlinks.each do |symlink|
       filename = symlink.split('/').last.split('.symlink')
@@ -54,17 +51,9 @@ task :remove do
       FileUtils.rm_rf(removefile)
 
       if File.exists?("#{removefile}.backup")
-        unless restore || skip
-          print "Do you want to restore backup dotfiles? (y/n)"
-          case STDIN.gets.chomp
-          when 'y' then restore = true
-          when 'n' then skip = false
-          end
-          if restore
-            `mv "$HOME/.#{filename}.backup" "$HOME/.#{filename}"`
-            FileUtils.rm_rf("#{removefile}.backup")
-          end
-        end
+        `mv "$HOME/.#{filename}.backup" "$HOME/.#{filename}"`
+        FileUtils.rm_rf("#{removefile}.backup")
+
       end
     end
   end
