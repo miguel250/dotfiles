@@ -34,7 +34,7 @@ need_push () {
   then
     echo " "
   else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%}"
+    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
   fi
 }
 
@@ -42,4 +42,4 @@ directory_name(){
   echo "%{$fg[cyan]%}[%~/]%{$reset_color%}"
 }
 
-PROMPT='$(directory_name)$(git_dirty)$(need_push) › '
+PROMPT='$(directory_name)$(git_dirty)$(need_push)› '
