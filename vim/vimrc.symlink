@@ -1,0 +1,18 @@
+set noswapfile
+set number
+
+"Load Pathogen
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
+syntax on
+filetype plugin indent on
+
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+" Highlight trailing whitespace
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
