@@ -46,14 +46,24 @@ task :remove do
     symlinks = Dir.glob('*/**{.symlink}')
 
     symlinks.each do |symlink|
-      filename = symlink.split('/').last.split('.symlink')
+      filename = symlink.split('/').last.split('.symlink').last
       removefile = "#{ENV["HOME"]}/.#{filename}"
       FileUtils.rm_rf(removefile)
 
+      restore = false
+      skip = false
       if File.exists?("#{removefile}.backup")
-        `mv "$HOME/.#{filename}.backup" "$HOME/.#{filename}"`
-        FileUtils.rm_rf("#{removefile}.backup")
-
+        unless restore || skip
+          print "Do you want to restore backup dotfiles? (y/n)"
+          case STDIN.gets.chomp
+          when 'y' then restore = true
+          when 'n' then skip = false
+          end
+          if restore
+            `mv "$HOME/.#{filename}.backup" "$HOME/.#{filename}"`
+            FileUtils.rm_rf("#{removefile}.backup")
+          end
+        end
       end
     end
   end
