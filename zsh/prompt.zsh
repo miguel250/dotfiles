@@ -39,7 +39,7 @@ need_push () {
 }
 
 directory_name(){
-  echo "%{$fg[cyan]%}%~/%{$reset_color%}"
+  echo "%{$fg[cyan]%}[%~/]%{$reset_color%}"
 }
 
 PROMPT='$(directory_name)$(git_dirty)$(need_push)› '
