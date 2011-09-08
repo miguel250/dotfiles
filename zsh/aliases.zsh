@@ -1,1 +1,1 @@
-alias reload='. ~/.zshrc && echo "zsh reloaded"'
+alias zsh-reload='. ~/.zshrc && echo "zsh reloaded"'
