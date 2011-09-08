@@ -1,0 +1,12 @@
+# dotfiles
+
+Commands
+-----
+* zsh-reload  reload zsh config
+
+Vim Plugins
+-----
+* [nerdtree](https://github.com/scrooloose/nerdtree)
+* [pathgen](https://github.com/tpope/vim-pathogen)
+* [Colors Solarized](https://github.com/altercation/vim-colors-solarized)
+* [Markdown](https://github.com/altercation/vim-colors-solarized)
