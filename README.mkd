@@ -3,6 +3,7 @@
 Commands
 -----
 * `zsh-reload`  reload zsh config
+* `proj`  cd to project folder
 
 Vim Plugins
 -----
