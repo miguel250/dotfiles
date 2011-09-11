@@ -12,7 +12,3 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
-
-" Highlight trailing whitespace
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
