@@ -25,7 +25,7 @@ git_prompt_info () {
 }
 
 directory_name(){
-  echo "%{%b%F{green}%K{black}%}%~%{%B%F{green}%}"
+  echo "%{%b%F{green}%~%{%B%F{green}%}"
 }
 
 export PROMPT=$'$(directory_name) $(git_dirty)› '
