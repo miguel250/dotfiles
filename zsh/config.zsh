@@ -1,3 +1,7 @@
+fpath=($ZSH/zsh/functions $fpath)
+ 
+autoload -U $ZSH/zsh/functions/*(:t)
+
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -19,3 +23,4 @@ setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
+setopt auto_cd
