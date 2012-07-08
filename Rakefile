@@ -1,7 +1,7 @@
 require 'rake'
 
 desc 'Hook dotfiles into system'
-task :install do
+task :install  => :sublime do
     switch_to_zsh
     linkables = Dir.glob('*/**{.symlink}')
 
@@ -49,6 +49,34 @@ task :remove do
             `mv "$HOME/.#{file}.backup" "$HOME/.#{file}"` 
         end
     end
+
+    settings = Dir.glob('sublime2/*')
+    sublime_path ="#{ENV["HOME"]}/Library/Application\ Support/Sublime\ Text\ 2/Packages/User"
+    settings.each do |setting|
+        file = setting.split('/').last
+        target = "#{sublime_path}/#{file}"
+
+        if File.exists?("#{target}.backup")
+            `mv "#{target}.backup" "#{target}"`
+        end
+    end
+    
+end
+
+desc 'Sublime2 settings'
+task :sublime do
+    settings = Dir.glob('sublime2/*')
+    sublime_path ="#{ENV["HOME"]}/Library/Application\ Support/Sublime\ Text\ 2/Packages/User"
+
+    settings.each do |setting|
+
+        file = setting.split('/').last
+        target = "#{sublime_path}/#{file}"
+        `mv "#{target}" "#{target}.backup"`
+        
+        system `ln -s "$PWD/#{setting}" "#{target}"`
+    end
+
 end
 
 def switch_to_zsh
