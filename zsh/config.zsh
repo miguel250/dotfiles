@@ -1,6 +1,5 @@
 export CLICOLOR=true
 export LSCOLORS="exfxcxdxbxegedabagacad"
-export EDITOR='subl -w'
 
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'

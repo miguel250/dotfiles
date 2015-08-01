@@ -10,6 +10,8 @@
             "wget",
             "hub",
             "tmux",
+            "ansible",
+            "ack",
             "caskroom/cask/brew-cask"
         ]
     },
