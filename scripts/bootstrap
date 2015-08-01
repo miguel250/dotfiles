@@ -88,6 +88,13 @@ def installSymlinks(backup, overwrite=False):
         homePath =  os.path.join(DOTFILEDIR, file)
         os.symlink(homePath, filePath)
 
+    print("Add .localzshrc file...")
+    localFile = os.path.join(HOME, '.localzshrc')
+    if os.path.exists(localFile) is False:
+        with open(localFile, "a") as file:
+            file.write('export DOTFILEDIR=%s/\n' % DOTFILEDIR)
+            file.write('export ZSH=%s/zsh' % DOTFILEDIR)
+
     print("Installing fonts...")
     for file in glob.glob('fonts/*/*'):
         fileName, fileExtension = os.path.splitext(os.path.basename(file))

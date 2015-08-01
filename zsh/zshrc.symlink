@@ -1,10 +1,6 @@
 #!/usr/bin/env zsh
 
 # Find dotfile location
-initial_script=~/dotfiles
-export ZSH=~/dotfiles/zsh
-export DOTFILEDIR="${ZSH}/.."
-
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
 POWERLEVEL9K_MODE='awesome-patched'
@@ -15,9 +11,9 @@ POWERLEVEL9K_TIME_FORMAT="%D{%r \uE868  %m.%d.%y}"
 # Location of projects
 export PROJECTS=~/Projects
 
-if [[ -a ~/.localrc ]]
+if [[ -a ~/.localzshrc ]]
 then
-  source ~/.localrc
+  source ~/.localzshrc
 fi
 
 
