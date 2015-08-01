@@ -1,0 +1,4 @@
+set -g default-terminal "screen-256color"
+
+set -g default-shell /usr/bin/zsh
+set -g default-command /usr/bin/zsh

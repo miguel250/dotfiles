@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+
+import os
+import platform
+from subprocess import call
+import json
+
+OS = platform.system()
+CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
+DOTFILEDIR = os.path.realpath('%s/../' % CURRENTPATH)
+
+
+BREWURL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'
+
+if __name__ == '__main__':
+    if OS == "Darwin":
+        if os.path.exists('/usr/local/bin/brew') is False:
+            print 'Installing Homebrew for you.'
+            os.system('ruby -e "$(curl -fsSL %s)"' % BREWURL)
+
+        if os.path.exists('/usr/local/bin/brew') is True:
+            print 'Installing brew packages'
+            os.system("brew update")
+            packagePath = os.path.join(DOTFILEDIR, "config.json")
+            f = open(packagePath, 'r')
+            config = json.loads(f.read())
+
+            for p in config["brew"]["packages"]:
+                # check if packages is installed. If it is upgrade it
+                nothing = open(os.devnull, 'w')
+                returnCode = call(['brew', 'ls', p], stdout=nothing, stderr=nothing)
+
+                if returnCode == 1:
+                    os.system("brew install %s" % p)
+                else:
+                    os.system("brew upgrade %s" % p)
+
+            print "Installing caskroom/versions tab"
+            call(['brew', 'tap', 'caskroom/versions'])
+            call(['brew', 'cask', 'doctor'])
+
+            for p in config["cask"]["applications"]:
+                returnCode = call(['brew', 'cask', 'list', p], stdout=nothing, stderr=nothing)
+
+                if returnCode == 1:
+                    call(['brew', 'cask', 'install', '--force', p]) # just reinstalled it again
+            call(["brew", "cask", "cleanup"])
+            nothing.close()
+        else:
+            print 'Failed to find brew binary'
+    else:
+        print "Skipping installing homebrew"
+

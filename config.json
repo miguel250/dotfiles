@@ -1,0 +1,33 @@
+{
+    "brew": {
+        "packages": [
+            "git",
+            "zsh",
+            "packer",
+            "grc",
+            "coreutils",
+            "fontconfig",
+            "wget",
+            "hub",
+            "tmux",
+            "caskroom/cask/brew-cask"
+        ]
+    },
+    "cask": {
+        "applications": [
+            "firefox",
+            "google-chrome",
+            "alfred",
+            "dropbox",
+            "lastpass",
+            "dash",
+            "vagrant",
+            "vagrant-manager",
+            "vmware-fusion",
+            "virtualbox",
+            "iterm2",
+            "evernote",
+            "cyberduck"
+        ]
+    }
+}

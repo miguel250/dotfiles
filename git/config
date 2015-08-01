@@ -1,0 +1,24 @@
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+
+[alias]
+    co = checkout
+    count = !git shortlog -sn
+
+[apply]
+    whitespace = nowarn
+
+[mergetool]
+    keepBackup = false
+
+[difftool]
+    prompt = false
+
+[help]
+    autocorrect = 1
+
+[push]
+    default = simple

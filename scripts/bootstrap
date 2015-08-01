@@ -1,0 +1,171 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import argparse
+import glob
+from os.path import expanduser
+import platform
+import shutil
+from subprocess import call
+
+HOME = expanduser('~')
+OS = platform.system()
+CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
+DOTFILEDIR = os.path.realpath('%s/../' % CURRENTPATH)
+
+def installGitConfiguration(name, email, backup, overwrite):
+    print("Add git configuration...")
+
+    returnCode = call(['git', '--version']) # check git version
+
+    if OS == "Darwin" and returnCode == 69:
+        call(['open', '-a', 'xcode'])
+        exit(69)
+        return
+
+    filePath = os.path.join(HOME, '.gitconfig')
+    fileExists = os.path.exists(filePath)
+    if ( overwrite is False and backup is False) and fileExists:
+        step = raw_input('git configuration already exists, what do you want to do? [e]xit, [b]ackup all or [o]verride all? ')
+
+        if step.lower() == 'b':
+            backup = True
+        elif step.lower() == 'e':
+            exit(1)
+        elif step.lower() == "o":
+            overwrite = True
+    if backup:
+        os.rename(filePath, '%s.bk' % filePath)
+    elif fileExists:
+        if os.path.isdir(filePath):
+            os.rmdir(filePath)
+        else:
+            os.remove(filePath)
+
+    file = open(filePath, 'w')
+    file.write('[include]')
+    configPath =  os.path.join(DOTFILEDIR, 'git', 'config')
+    file.write('\n\t path = %s' % configPath)
+    file.close()
+
+    while name == "":
+        name = raw_input('Please enter your name: ')
+
+    call(['git', 'config', '--global', 'user.name', name])
+
+    while email == "":
+        email = raw_input('Please enter your email: ')
+
+    call(['git', 'config', '--global', 'user.email', email])
+
+def installSymlinks(backup, overwrite=False):
+    """
+        Install all *.symlink inside of dotfile
+    """
+    print("Create symlinks...")
+    os.chdir(DOTFILEDIR)
+
+    for file in glob.glob('*/*.symlink'):
+        fileName, fileExtension = os.path.splitext(os.path.basename(file))
+        filePath = os.path.join(HOME, '.%s' % fileName)
+
+        fileExists = os.path.exists(filePath)
+        if ( overwrite is False and backup is False) and fileExists:
+            step = raw_input('File already exists, what do you want to do? [e]xit, [b]ackup all or [o]verride all? ')
+
+            if step.lower() == 'b':
+                backup = True
+            elif step.lower() == 'e':
+                exit(1)
+            elif step.lower() == "o":
+                overwrite = True
+        if backup:
+            os.rename(filePath, '%s.bk' % filePath)
+        elif fileExists:
+            os.remove(filePath)
+
+        homePath =  os.path.join(DOTFILEDIR, file)
+        os.symlink(homePath, filePath)
+
+    print("Installing fonts...")
+    for file in glob.glob('fonts/*/*'):
+        fileName, fileExtension = os.path.splitext(os.path.basename(file))
+
+        if OS == "Darwin":
+            filePath = os.path.join(HOME, 'Library/Fonts/%s.%s' % (fileName, fileExtension))
+        else:
+            filePath = os.path.join(HOME, '/.fonts/%s.%s' % (fileName, fileExtension))
+
+        fileExists = os.path.exists(filePath)
+        if fileExists:
+            os.remove(filePath)
+
+        homePath =  os.path.join(DOTFILEDIR, file)
+        os.symlink(homePath, filePath)
+
+def runInstall():
+    for file in glob.glob('*/install'):
+        os.system(file)
+
+def restore():
+    pass
+
+def main():
+    parser = argparse.ArgumentParser(description='Install dotfiles')
+
+    parser.add_argument('--backup', help='Backup files', action='store_true')
+    parser.add_argument('--default', help='Make zsh default', action='store_true')
+    parser.add_argument('--name', help='Name to use for git', type=str)
+    parser.add_argument('--email', help='Email to use for git', type=str)
+    parser.add_argument('-s','--link', help='Only install symlink', action='store_true')
+    parser.add_argument('-c','--conf', help='Only run git configuration', action='store_true')
+    parser.add_argument('-i','--install', help='Only run dotfiles .install files', action='store_true')
+    parser.add_argument('-o','--overwrite', help='Overwrite all files', action='store_true')
+
+    parser.set_defaults(link=False)
+    parser.set_defaults(conf=False)
+    parser.set_defaults(brew=False)
+    parser.set_defaults(install=False)
+    parser.set_defaults(backup=False)
+    parser.set_defaults(overwrite=False)
+    parser.set_defaults(default=False)
+    parser.set_defaults(name="")
+    parser.set_defaults(email="")
+
+    args = parser.parse_args()
+
+    if args.link:
+        installSymlinks(args.backup, args.overwrite)
+
+    if args.conf:
+        installGitConfiguration(args.name, args.email, args.backup, args.overwrite)
+
+    if args.install:
+        runInstall()
+
+    if args.default:
+         with open("/etc/shells", "rt") as file:
+            s = file.read()
+            missingFile = False
+            with open('/tmp/shells.tmp', 'wt') as outf:
+                outf.write(s)
+                for line in s.split('\n'):
+                    if '/usr/local/bin/zsh' in line:
+                        continue
+                    else:
+                        missingFile = True
+                if missingFile:
+                    outf.write('/usr/local/bin/zsh')
+         os.system('sudo mv /tmp/shells.tmp /etc/shells')
+         os.system('chsh -s $(which zsh)')
+
+    if args.link is False and args.conf is False and args.install == False:
+        installSymlinks(args.backup, args.overwrite)
+        installGitConfiguration(args.name, args.email, args.backup, args.overwrite)
+        runInstall()
+        os.system('exec $(which zsh)')
+
+if __name__ == '__main__':
+    main()
+

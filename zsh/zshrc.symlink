@@ -1,24 +1,52 @@
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
-export PATH="$ZSH/bin:$PATH;"
-export EDITOR='subl -w'
+#!/usr/bin/env zsh
 
-# your project folder that we can `c [tab]` to
+# Find dotfile location
+initial_script=~/dotfiles
+export ZSH=~/dotfiles/zsh
+export DOTFILEDIR="${ZSH}/.."
+
+export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+
+POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
+POWERLEVEL9K_TIME_FORMAT="%D{%r \uE868  %m.%d.%y}"
+
+# Location of projects
 export PROJECTS=~/Projects
 
-# source every .zsh file in this rep
-for config_file ($ZSH/**/*.zsh) source $config_file
-
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
 if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
 fi
+
+
+source "${DOTFILEDIR}/themes/powerlevel9k/powerlevel9k.zsh-theme"
+
+
+typeset -U config_files
+config_files=($DOTFILEDIR/**/*.zsh)
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}
+do
+  source $file
+done
+
+# load everything but the path and completion files
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+do
+  source $file
+done
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
 
 # load every completion after autocomplete loads
-for config_file ($ZSH/**/completion.sh) source $config_file
+for file in ${(M)config_files:#*/completion.zsh}
+do
+  source $file
+done
+
+unset config_files

@@ -1,7 +1,0 @@
-[user]
-	name = Miguel Perez
-	email = 
-
-[core]
-	excludesfile = ~/.gitignore
-    editor = subl -w
