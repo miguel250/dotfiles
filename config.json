@@ -6,7 +6,6 @@
             "packer",
             "grc",
             "coreutils",
-            "fontconfig",
             "wget",
             "hub",
             "tmux",

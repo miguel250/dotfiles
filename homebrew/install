@@ -43,7 +43,7 @@ if __name__ == '__main__':
                 returnCode = call(['brew', 'cask', 'list', p], stdout=nothing, stderr=nothing)
 
                 if returnCode == 1:
-                    call(['brew', 'cask', 'install', '--force', p]) # just reinstalled it again
+                    call(['HOMEBREW_CASK_OPTS="--appdir=/Applications"', 'brew', 'cask', 'install', '--force', p]) # just reinstalled it again
             call(["brew", "cask", "cleanup"])
             nothing.close()
         else:
