@@ -48,13 +48,13 @@ bind b list-buffers  # list paster buffers
 bind p paste-buffer  # paste from the top pate buffer
 bind P choose-buffer # choose which buffer to paste from
 
-# copy to Mac OSX pasteboard
-if 'which -s reattach-to-user-namespace' 'bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"'
-
-
 # reload configuration
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 
+set-option -g status-justify "centre"
+set-option -g status-left-length 60
+set-option -g status-right-length 90
 TMUX_RIGHT_STATUS="#[fg=black,bg=white] %r   %m.%d.%y"
-set-option -g status-right "$TMUX_RIGHT_STATUS"
 
+set-option -g status-left "#[fg=black,bg=blue] #[fg=black,bg=blue]go$GOVERSION #[fg=blue,bg=black]"
+set-option -g status-right "$TMUX_RIGHT_STATUS"
