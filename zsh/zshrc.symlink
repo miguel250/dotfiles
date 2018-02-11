@@ -3,11 +3,6 @@
 # Find dotfile location
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
-POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_SHOW_CHANGESET=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
-POWERLEVEL9K_TIME_FORMAT="%D{%r \uE868  %m.%d.%y}"
 
 # Location of projects
 export PROJECTS=~/Projects
@@ -16,12 +11,6 @@ if [[ -a ~/.localzshrc ]]
 then
   source ~/.localzshrc
 fi
-
-if  [ -n "$TMUX" ]; then
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(longstatus history)
-fi
-
-source "${DOTFILEDIR}/themes/powerlevel9k/powerlevel9k.zsh-theme"
 
 
 typeset -U config_files
