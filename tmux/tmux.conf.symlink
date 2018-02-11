@@ -1,60 +1,105 @@
-set -g default-terminal "screen-256color"
-setw -g xterm-keys on
-# Set status bar
-set -g status-bg black
-set -g status-fg white
-# Highlight active window
-set-window-option -g window-status-current-bg blue
-
-
-set-window-option -g mode-mouse on
-set-option -g mouse-select-pane on
-set-option -g mouse-resize-pane on
-set-option -g mouse-select-window on
-
-set -g status-utf8 on
-setw -g utf8 on
-set -g history-limit 5000
+# -- settings  -------------------------------------------------------------------
+set -g history-limit 30000  # scroll History
+set -s escape-time 50       # lower escape timing
 
 
 # -- display -------------------------------------------------------------------
-
 set -g base-index 1         # start windows numbering at 1
-setw -g pane-base-index 1   # make pane numbering consistent with windows
-
-setw -g automatic-rename on # rename window to reflect current program
-# renumber windows when a window is closed
-set -g renumber-windows on
-
-set -g set-titles on                        # set terminal title
+set -g renumber-windows on  # renumber windows when a window is closed
+set -g set-titles on        # set terminal title
 set -g set-titles-string '#h - #S ● #I #W'
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+set -g mouse on
+set-window-option -g mode-keys vi
+set -g renumber-windows on  # renumber other windows when one is closed
+setw -g pane-base-index 1   # make pane numbering consistent with windows
+setw -g automatic-rename on # rename window to reflect current program
 
-# activity
-set -g monitor-activity on
-set -g visual-activity off
+# -- keymapping ----------------------------------------------------------------------
+# change prefix command to C-z
+set -g prefix C-z
+unbind C-b
+bind C-z last-window
+bind z send-prefix
 
+# transfer copied text to attached terminal with yank
+bind-key -T copy-mode-vi Y send-keys -X copy-pipe 'yank > #{pane_tty}'
 
-# 24 hour clock
-set-option -g clock-mode-colour white
-set-option -g clock-mode-style 24
+# transfer most-recently copied text to attached terminal with yank
+bind-key -n M-y run-shell 'tmux save-buffer - | yank > #{pane_tty}'
 
-set -g status-interval 10
+# transfer previously copied text (chosen from a menu) to attached terminal
+bind-key -n M-Y choose-buffer 'run-shell "tmux save-buffer -b \"%%%\" - | yank > #{pane_tty}"'
 
+bind-key -T edit-mode-vi Up send-keys -X history-up
+bind-key -T edit-mode-vi Down send-keys -X history-down
+unbind-key -T copy-mode-vi Space     ;   bind-key -T copy-mode-vi v send-keys -X begin-selection
+unbind-key -T copy-mode-vi Enter     ;   bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel  'yank > #{pane_tty}'
+unbind-key -T copy-mode-vi C-v       ;   bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+unbind-key -T copy-mode-vi [         ;   bind-key -T copy-mode-vi [ send-keys -X begin-selection
+unbind-key -T copy-mode-vi ]         ;   bind-key -T copy-mode-vi ] send-keys -X copy-selection
 
-# -- copy mode -----------------------------------------------------------------
-
-bind Enter copy-mode # enter copy mode
-bind b list-buffers  # list paster buffers
-bind p paste-buffer  # paste from the top pate buffer
-bind P choose-buffer # choose which buffer to paste from
+unbind %
+bind | split-window -h
+bind - split-window -v
 
 # reload configuration
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 
-set-option -g status-justify "centre"
-set-option -g status-left-length 60
-set-option -g status-right-length 90
-TMUX_RIGHT_STATUS="#[fg=black,bg=white] %r   %m.%d.%y"
+# -- gruvbox theme -------------------------------------------------------------------
+set -g default-terminal "xterm-256color"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
 
-set-option -g status-left "#[fg=black,bg=blue] #[fg=black,bg=blue]go$GOVERSION #[fg=blue,bg=black]"
-set-option -g status-right "$TMUX_RIGHT_STATUS"
+## COLORSCHEME: gruvbox dark
+set-option -g status "on"
+
+# default statusbar colors
+set-option -g status-bg colour237 #bg1
+set-option -g status-fg colour223 #fg1
+
+# default window title colors
+set-window-option -g window-status-bg colour214 #yellow
+set-window-option -g window-status-fg colour237 #bg1
+
+set-window-option -g window-status-activity-bg colour237 #bg1
+set-window-option -g window-status-activity-fg colour248 #fg3
+
+# active window title colors
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-fg colour237 #bg1
+
+# pane border
+set-option -g pane-active-border-fg colour250 #fg2
+set-option -g pane-border-fg colour237 #bg1
+
+# message infos
+set-option -g message-bg colour239 #bg2
+set-option -g message-fg colour223 #fg1
+
+# writting commands inactive
+set-option -g message-command-bg colour239 #fg3
+set-option -g message-command-fg colour223 #bg1
+
+# pane number display
+set-option -g display-panes-active-colour colour250 #fg2
+set-option -g display-panes-colour colour237 #bg1
+
+# clock
+set-window-option -g clock-mode-colour colour109 #blue
+
+# bell
+set-window-option -g window-status-bell-style fg=colour235,bg=colour167 #bg, red
+
+set-option -g status-attr "default"
+set-option -g status-justify "left"
+set-option -g status-left-attr "none"
+set-option -g status-left-length "80"
+set-option -g status-right-attr "none"
+set-option -g status-right-length "90"
+set-window-option -g window-status-activity-attr "none"
+set-window-option -g window-status-attr "none"
+set-window-option -g window-status-separator ""
+
+setw -g window-status-format '#I:#W  '
+set -g status-position "top"
+set -g status-right "#[fg=colour240,bg=colour236,nobold,nounderscore,noitalics]#[fg=colour223,bg=colour245] %Y-%m-%d %H:%M #[fg=colour252,bg=colour240,nobold,nounderscore,noitalics]#[fg=colour241,bg=colour208] #h"
