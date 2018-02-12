@@ -40,8 +40,22 @@ unbind-key -T copy-mode-vi [         ;   bind-key -T copy-mode-vi [ send-keys -X
 unbind-key -T copy-mode-vi ]         ;   bind-key -T copy-mode-vi ] send-keys -X copy-selection
 
 unbind %
-bind | split-window -h
-bind - split-window -v
+
+# Open split window in the send directory
+bind | split-window -h -c '#{pane_current_path}'
+bind - split-window -v -c '#{pane_current_path}'
+
+# Change between spli windows
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key h select-pane -L
+bind-key l select-pane -R
+
+# Resize panes
+bind-key J resize-pane -D 10
+bind-key K resize-pane -U 10
+bind-key H resize-pane -L 10
+bind-key L resize-pane -R 10
 
 # reload configuration
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
