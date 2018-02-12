@@ -42,3 +42,12 @@ unset config_files
 
 autoload -U promptinit; promptinit
 prompt pure
+
+if [ -z "$TMUX" ] ; then
+  local session_name="workspace"
+  if tmux has-session -t $session_name 2>/dev/null; then
+    tmux -2 attach-session -t $session_name
+  else
+    tmux -2 new-session -s $session_name
+  fi
+fi
