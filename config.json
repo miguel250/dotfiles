@@ -4,7 +4,6 @@
         "packages": [
             "git",
             "zsh",
-            "packer",
             "grc",
             "coreutils",
             "wget",
@@ -12,8 +11,8 @@
             "tmux",
             "ansible",
             "ack",
-            "caskroom/cask/brew-c",
-            "mercurial"
+            "mercurial",
+            "gcc"
         ]
     },
     "cask": {
