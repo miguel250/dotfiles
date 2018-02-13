@@ -25,7 +25,7 @@ optional arguments:
   --email EMAIL    Email to use for git
   -s, --link       Don't run install symlink
   -c, --conf       Don't run git configuration
-  -i, --install    Don't run dotfiles .install files
+  -i, --install    Don't run */install files
   -o, --overwrite  Overwrite all files
 ```
 

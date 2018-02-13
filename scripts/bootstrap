@@ -160,7 +160,7 @@ def main():
     parser.add_argument('--email', help='Email to use for git', type=str)
     parser.add_argument('-s','--link', help='Don\'t run install symlink', action='store_false')
     parser.add_argument('-c','--conf', help='Don\'t run git configuration', action='store_false')
-    parser.add_argument('-i','--install', help='Don\'t run dotfiles .install files', action='store_false')
+    parser.add_argument('-i','--install', help='Don\'t run */install files', action='store_false')
     parser.add_argument('-o','--overwrite', help='Overwrite all files', action='store_true')
 
     args = parser.parse_args()
