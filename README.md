@@ -1,11 +1,30 @@
 # Miguel dotfiles
 
-Using [holman dotfiles](https://github.com/holman/dotfiles), [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and [rtomayko](https://github.com/rtomayko/dotfiles) as examples. It also uses [powerlevel9k](https://github.com/bhilburn/powerlevel9k) with [awesome-terminal-fonts](https://github.com/gabrielelana/awesome-terminal-fonts).
+Using [holman dotfiles](https://github.com/holman/dotfiles),
+[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and
+[rtomayko](https://github.com/rtomayko/dotfiles) as examples.
 
 ```sh
 scripts/bootstrap
 ```
 
-#### Licences
-- [Ubuntu Mono Licence](http://font.ubuntu.com/ufl/)
-- [Awesome Terminal Fonts](https://github.com/gabrielelana/awesome-terminal-fonts/blob/master/LICENSE)
+```sh
+ scripts/bootstrap -h
+usage: bootstrap [-h] [--backup] [--restore] [--bash] [--name NAME]
+                 [--email EMAIL] [-s] [-c] [-i] [-o]
+
+Install dotfiles
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --backup         Backup files
+  --restore        restore to backup file
+  --bash           Enable zsh shell via bash
+  --name NAME      Name to use for git
+  --email EMAIL    Email to use for git
+  -s, --link       Don't run install symlink
+  -c, --conf       Don't run git configuration
+  -i, --install    Don't run dotfiles .install files
+  -o, --overwrite  Overwrite all files
+```
+

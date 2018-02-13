@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 import os
 import sys
 import argparse
@@ -35,26 +37,34 @@ def installGitConfiguration(name, email, backup, overwrite):
             exit(1)
         elif step.lower() == "o":
             overwrite = True
-    if backup:
+
+    backupFilePath = '%s.bk' % filePath
+    backupFilePathExists = os.path.exists(filePath)
+    if backupFilePathExists == False and fileExists and backup:
+        print("Creating backup copy of %s" % filePath)
         os.rename(filePath, '%s.bk' % filePath)
     elif fileExists:
         if os.path.isdir(filePath):
             os.rmdir(filePath)
         else:
+            print("Deleting %s" % filePath)
             os.remove(filePath)
 
+
+    print("Creating %s" % filePath)
     file = open(filePath, 'w')
     file.write('[include]')
     configPath =  os.path.join(DOTFILEDIR, 'git', 'config')
     file.write('\n\t path = %s' % configPath)
     file.close()
 
-    while name == "":
+    print(name)
+    while name == None:
         name = raw_input('Please enter your name: ')
 
     call(['git', 'config', '--global', 'user.name', name])
 
-    while email == "":
+    while email == None:
         email = raw_input('Please enter your email: ')
 
     call(['git', 'config', '--global', 'user.email', email])
@@ -80,67 +90,99 @@ def installSymlinks(backup, overwrite=False):
                 exit(1)
             elif step.lower() == "o":
                 overwrite = True
-        if backup:
+
+        backupFilePath = '%s.bk' % filePath
+        backupFilePathExists = os.path.exists(filePath)
+        if backupFilePathExists == False and backup and fileExists:
+            print("Creating backup copy of %s" % filePath)
             os.rename(filePath, '%s.bk' % filePath)
         elif fileExists:
+            print("Deleting %s" % filePath)
             os.remove(filePath)
 
         homePath =  os.path.join(DOTFILEDIR, file)
+        print("Creating a symlink to %s from %s" % (filePath, homePath))
         os.symlink(homePath, filePath)
 
-    print("Add .localzshrc file...")
     localFile = os.path.join(HOME, '.localzshrc')
-    if os.path.exists(localFile) is False:
-        with open(localFile, "a") as file:
+    with open(localFile, "a+") as file:
+        if "DOTFILEDIR" not in file.read():
+            print("Updating .localzshrc file...")
             file.write('export DOTFILEDIR=%s\n' % DOTFILEDIR)
             file.write('export ZSH=%s/zsh' % DOTFILEDIR)
 
-    print("Installing fonts...")
-    for file in glob.glob('fonts/*/*'):
-        fileName, fileExtension = os.path.splitext(os.path.basename(file))
-
-        if OS == "Darwin":
-            filePath = os.path.join(HOME, 'Library/Fonts/%s.%s' % (fileName, fileExtension))
-        else:
-            filePath = os.path.join(HOME, '/.fonts/%s.%s' % (fileName, fileExtension))
-
-        fileExists = os.path.exists(filePath)
-        if fileExists:
-            os.remove(filePath)
-
-        homePath =  os.path.join(DOTFILEDIR, file)
-        os.symlink(homePath, filePath)
 
 def runInstall():
     for file in glob.glob('*/install'):
         os.system(file)
 
 def restore():
-    pass
+    step = raw_input('Are you sure you want to uninstall dotfiles [e]xit, [c]ontinue? ')
+
+    if step.lower() != 'c':
+        exit(1)
+
+    print("Uninstalling")
+
+    filePath = os.path.join(HOME, '.gitconfig')
+    fileExists = os.path.exists(filePath)
+
+    if fileExists:
+        print("removing %s file" % filePath)
+        os.remove(filePath)
+        backupFile = "%s.bk" % filePath
+        backupFileExists = os.path.exists("%s.bk" % filePath)
+        if backupFileExists:
+            print("restoring %s file" % backupFile)
+            os.rename(backupFile, filePath)
+
+    for file in glob.glob('*/*.symlink'):
+        fileName, fileExtension = os.path.splitext(os.path.basename(file))
+        filePath = os.path.join(HOME, '.%s' % fileName)
+        fileExists = os.path.exists(filePath)
+
+        if fileExists:
+            print("removing %s file" % filePath)
+            os.remove(filePath)
+            backupFile = "%s.bk" % filePath
+            backupFileExists = os.path.exists("%s.bk" % filePath)
+            if backupFileExists:
+                print("restoring %s file" % backupFile)
+                os.rename(backupFile, filePath)
 
 def main():
     parser = argparse.ArgumentParser(description='Install dotfiles')
 
-    parser.add_argument('--backup', help='Backup files', action='store_true')
-    parser.add_argument('--default', help='Make zsh default', action='store_true')
+    parser.add_argument('--backup', help='Backup files', action='store_false')
+    parser.add_argument('--restore', help='restore to backup file', action='store_true')
+    parser.add_argument('--bash', help='Enable zsh shell via bash', action='store_true')
     parser.add_argument('--name', help='Name to use for git', type=str)
     parser.add_argument('--email', help='Email to use for git', type=str)
-    parser.add_argument('-s','--link', help='Only install symlink', action='store_true')
-    parser.add_argument('-c','--conf', help='Only run git configuration', action='store_true')
-    parser.add_argument('-i','--install', help='Only run dotfiles .install files', action='store_true')
+    parser.add_argument('-s','--link', help='Don\'t run install symlink', action='store_false')
+    parser.add_argument('-c','--conf', help='Don\'t run git configuration', action='store_false')
+    parser.add_argument('-i','--install', help='Don\'t run dotfiles .install files', action='store_false')
     parser.add_argument('-o','--overwrite', help='Overwrite all files', action='store_true')
 
-    parser.set_defaults(link=False)
-    parser.set_defaults(conf=False)
-    parser.set_defaults(brew=False)
-    parser.set_defaults(install=False)
-    parser.set_defaults(backup=False)
-    parser.set_defaults(overwrite=False)
-    parser.set_defaults(default=False)
-    parser.set_defaults(name="")
-    parser.set_defaults(email="")
-
     args = parser.parse_args()
+
+    if args.restore:
+        restore()
+        return
+
+    if args.bash:
+        content = """
+export SHELL=`which zsh`
+[ -z "$ZSH_VERSION" ] && exec "$SHELL" -l"""
+
+        bashFile = os.path.join(HOME, '.bashrc')
+        with open(bashFile, "a+") as file:
+            if content not in file.read():
+                print("Updating .bashrc file...")
+                file.write('%s' % content)
+        return
+
+    if args.install:
+        runInstall()
 
     if args.link:
         installSymlinks(args.backup, args.overwrite)
@@ -148,30 +190,9 @@ def main():
     if args.conf:
         installGitConfiguration(args.name, args.email, args.backup, args.overwrite)
 
-    if args.install:
-        runInstall()
 
-    if args.default:
-         with open("/etc/shells", "rt") as file:
-            s = file.read()
-            missingFile = False
-            with open('/tmp/shells.tmp', 'wt') as outf:
-                outf.write(s)
-                for line in s.split('\n'):
-                    if '/usr/local/bin/zsh' in line:
-                        continue
-                    else:
-                        missingFile = True
-                if missingFile:
-                    outf.write('/usr/local/bin/zsh')
-         os.system('sudo mv /tmp/shells.tmp /etc/shells')
-         os.system('chsh -s $(which zsh)')
-
-    if args.link is False and args.conf is False and args.install == False:
-        installSymlinks(args.backup, args.overwrite)
-        installGitConfiguration(args.name, args.email, args.backup, args.overwrite)
-        runInstall()
-        os.system('exec $(which zsh)')
+    if args.bash != False and args.link:
+        print("Run chsh -s $(which zsh) or script/bootstrap --bash to set zsh as default shell")
 
 if __name__ == '__main__':
     main()
