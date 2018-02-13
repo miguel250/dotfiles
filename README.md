@@ -4,12 +4,13 @@ Using [holman dotfiles](https://github.com/holman/dotfiles),
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and
 [rtomayko](https://github.com/rtomayko/dotfiles) as examples.
 
+#### Install dotfiles
 ```sh
 scripts/bootstrap
 ```
 
 ```sh
- scripts/bootstrap -h
+scripts/bootstrap -h
 usage: bootstrap [-h] [--backup] [--restore] [--bash] [--name NAME]
                  [--email EMAIL] [-s] [-c] [-i] [-o]
 
