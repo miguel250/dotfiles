@@ -28,4 +28,5 @@ optional arguments:
   -i, --install    Don't run */install files
   -o, --overwrite  Overwrite all files
 ```
-
+#### iterm2
+- Enable `Applications in terminal may access clipboard` to use copying with osc52.
