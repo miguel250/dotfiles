@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# Use emacs-like key bindings by defaul
+bindkey -e
+
 # Find dotfile location
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 

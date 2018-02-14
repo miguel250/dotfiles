@@ -10,10 +10,11 @@ set -g set-titles on        # set terminal title
 set -g set-titles-string '#h - #S ● #I #W'
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 set -g mouse on
-set-window-option -g mode-keys vi
+set -g status-keys emacs
 set -g renumber-windows on  # renumber other windows when one is closed
 setw -g pane-base-index 1   # make pane numbering consistent with windows
 setw -g automatic-rename on # rename window to reflect current program
+setw -g mode-keys vi
 
 # -- keymapping ----------------------------------------------------------------------
 # change prefix command to C-z
