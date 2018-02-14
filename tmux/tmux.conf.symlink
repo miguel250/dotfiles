@@ -60,6 +60,8 @@ bind-key L resize-pane -R 10
 # reload configuration
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 
+# Clear history
+bind -n C-k send-keys -R \; send-keys C-l \; clear-history
 # -- gruvbox theme -------------------------------------------------------------------
 set-option -ga terminal-overrides ",xterm-256color:Tc"
 
