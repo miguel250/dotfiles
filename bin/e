@@ -1,3 +1,7 @@
+if [ "$EDITOR" = "e" ]; then
+  EDITOR="nvim"
+fi
+
 if [ "$1" = "" ] ; then
   exec $EDITOR .
 else
