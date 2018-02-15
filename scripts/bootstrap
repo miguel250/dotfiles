@@ -171,8 +171,9 @@ def main():
 
     if args.bash:
         content = """
+source %s/brew/path.zsh
 export SHELL=`which zsh`
-[ -z "$ZSH_VERSION" ] && exec "$SHELL" -l"""
+[ -z "$ZSH_VERSION" ] && exec "$SHELL" -l""" % DOTFILEDIR
 
         bashFile = os.path.join(HOME, '.bashrc')
         with open(bashFile, "a+") as file:
