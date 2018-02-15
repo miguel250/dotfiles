@@ -15,6 +15,6 @@ then
   rm -f $BINARY_PATH
 fi
 
-mkdir -r $BINARY_PATH
+mkdir -p $BINARY_PATH
 curl -sL -o $BINARY_PATH $DOWNLOAD_URL
 chmod +x $BINARY_PATH
