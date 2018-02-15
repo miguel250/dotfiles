@@ -10,9 +10,14 @@ fi
 
 export PATH=$OLD_PATH_RESTORED
 
+# Find dotfile location
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
-# Load dotfile variables
+if [[ -a ~/.localzshrc ]]
+then
+  source ~/.localzshrc
+fi
+
 eval "$($DOTFILEDIR/bin/dotfile-env)"
 
 typeset -U config_files
@@ -47,12 +52,6 @@ mkdir -p ~/.zfunc/
 
 autoload -U promptinit; promptinit
 prompt pure
-
-# local private zshrc
-if [[ -a ~/.localzshrc ]]
-then
-  source ~/.localzshrc
-fi
 
 if [ -z "$TMUX" ] ; then
   local session_name="workspace"

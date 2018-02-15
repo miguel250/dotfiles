@@ -104,6 +104,14 @@ def installSymlinks(backup, overwrite=False):
         print("Creating a symlink to %s from %s" % (filePath, homePath))
         os.symlink(homePath, filePath)
 
+    localFile = os.path.join(HOME, '.localzshrc')
+    with open(localFile, "a+") as file:
+        if "DOTFILEDIR" not in file.read():
+            print("Updating .localzshrc file...")
+            file.write('export DOTFILEDIR=%s\n' % DOTFILEDIR)
+            file.write('export ZSH=%s/zsh' % DOTFILEDIR)
+
+
 def runInstall():
     for file in glob.glob('*/install'):
         os.system(file)
