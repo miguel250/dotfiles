@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 set -ex
 
-BINARY_PATH=~/.bin/gvm
+BINARY_DIR=~/.bin
+BINARY_PATH="$BINARY_PATH/gvm"
 source  ~/.localzshrc
-source $DOTFILEDIR/bin/dotfile-env
+eval "$($DOTFILEDIR/bin/dotfile-env)"
+
 
 PLATFORM=$(echo "$(expr substr $(uname -s) 1 5)" | awk '{print tolower($0)}')
-DOWNLOAD_URL="https://github.com/andrewkroh/gvm/releases/download/v$GVM_VERSION/gvm-$PLATFORM-amd64"
+DOWNLOAD_URL="https://github.com/andrewkroh/gvm/releases/download/v$GVM/gvm-$PLATFORM-amd64"
 
 if which gvm > /dev/null 2>&1
 then
   rm -f $BINARY_PATH
 fi
 
+mkdir -r $BINARY_PATH
 curl -sL -o $BINARY_PATH $DOWNLOAD_URL
 chmod +x $BINARY_PATH
