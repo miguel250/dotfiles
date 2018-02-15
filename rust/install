@@ -10,4 +10,4 @@ mkdir -p ~/.zfunc
 ~/.cargo/bin/rustup update
 ~/.cargo/bin/rustup completions zsh > ~/.zfunc/_rustup
 
-~/.cargo/bin/rustup override set $RUST_VERSION
+~/.cargo/bin/rustup default $RUST_VERSION
