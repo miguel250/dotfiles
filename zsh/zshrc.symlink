@@ -6,10 +6,6 @@ bindkey -e
 # Find dotfile location
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
-
-# Location of projects
-export PROJECTS=~/Projects
-
 if [[ -a ~/.localzshrc ]]
 then
   source ~/.localzshrc

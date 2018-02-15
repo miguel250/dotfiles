@@ -1,35 +1,39 @@
 {
-    "go_version": "1.5beta3",
-    "brew": {
-        "packages": [
-            "git",
-            "zsh",
-            "grc",
-            "coreutils",
-            "wget",
-            "hub",
-            "tmux",
-            "ansible",
-            "ack",
-            "mercurial",
-            "gcc"
-        ]
-    },
-    "cask": {
-        "applications": [
-            "firefox",
-            "google-chrome",
-            "alfred",
-            "dropbox",
-            "lastpass",
-            "dash",
-            "vagrant",
-            "vagrant-manager",
-            "vmware-fusion",
-            "virtualbox",
-            "iterm2",
-            "evernote",
-            "cyberduck"
-        ]
-    }
+  "environment_variables": {
+    "PROJECT": "$HOME/workspace",
+    "GO_VERSION": "1.9.4",
+    "GVM_VERSION": "0.0.5"
+  },
+  "brew": {
+    "packages": [
+      "git",
+      "zsh",
+      "grc",
+      "coreutils",
+      "wget",
+      "hub",
+      "tmux",
+      "ansible",
+      "ack",
+      "mercurial",
+      "gcc"
+    ]
+  },
+  "cask": {
+    "applications": [
+      "firefox",
+      "google-chrome",
+      "alfred",
+      "dropbox",
+      "lastpass",
+      "dash",
+      "vagrant",
+      "vagrant-manager",
+      "vmware-fusion",
+      "virtualbox",
+      "iterm2",
+      "evernote",
+      "cyberduck"
+    ]
+  }
 }
