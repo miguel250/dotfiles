@@ -3,6 +3,7 @@ set -ex
 
 source ~/.localzshrc
 source $DOTFILEDIR/brew/path.zsh
+eval "$($DOTFILEDIR/bin/dotfile-env)"
 
 mkdir -p $PROJECT
 mkdir -p ~/.config

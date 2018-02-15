@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -ex
+
+source ~/.localzshrc
+source $DOTFILEDIR/brew/path.zsh
+eval "$($DOTFILEDIR/bin/dotfile-env)"
+
+pip3 install --user --upgrade -r $PROJECT/vimrc/requirements.txt
+pip2 install --user --upgrade -r $PROJECT/vimrc/requirements.txt

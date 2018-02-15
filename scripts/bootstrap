@@ -116,6 +116,11 @@ def runInstall():
     for file in glob.glob('*/install'):
         os.system(file)
 
+    # install any extra dep needed by
+    # package.
+    for file in glob.glob('/extra_dep'):
+        os.system(file)
+
 def restore():
     step = raw_input('Are you sure you want to uninstall dotfiles [e]xit, [c]ontinue? ')
 
