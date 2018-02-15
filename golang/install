@@ -3,7 +3,7 @@ set -ex
 
 BINARY_PATH=~/.bin/gvm
 source  ~/.localzshrc
-source $DOTFILEDIR/system/dotfile-env.zsh
+source $DOTFILEDIR/bin/dotfile-env
 
 PLATFORM=$(echo "$(expr substr $(uname -s) 1 5)" | awk '{print tolower($0)}')
 DOWNLOAD_URL="https://github.com/andrewkroh/gvm/releases/download/v$GVM_VERSION/gvm-$PLATFORM-amd64"

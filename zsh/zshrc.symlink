@@ -3,6 +3,13 @@
 # Use emacs-like key bindings by defaul
 bindkey -e
 
+# save current PATH to be restored during reload
+if [[ -z $OLD_PATH_RESTORED ]]; then
+  export OLD_PATH_RESTORED=$PATH
+fi
+
+export PATH=$OLD_PATH_RESTORED
+
 # Find dotfile location
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
@@ -11,6 +18,7 @@ then
   source ~/.localzshrc
 fi
 
+eval "$($DOTFILEDIR/bin/dotfile-env)"
 
 typeset -U config_files
 config_files=($DOTFILEDIR/**/*.zsh)
