@@ -181,11 +181,11 @@ export SHELL=`which zsh`
                 file.write('%s' % content)
         return
 
-    if args.install:
-        runInstall()
-
     if args.link:
         installSymlinks(args.backup, args.overwrite)
+
+    if args.install:
+        runInstall()
 
     if args.conf:
         installGitConfiguration(args.name, args.email, args.backup, args.overwrite)
