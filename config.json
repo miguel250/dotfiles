@@ -2,7 +2,7 @@
   "environment_variables": {
     "PROJECT": "$HOME/workspace",
     "GO_VERSION": "1.9.4",
-    "GVM_VERSION": "0.0.5"
+    "GVM": "0.0.5"
   },
   "brew": {
     "packages": [
