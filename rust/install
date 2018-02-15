@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 set -ex
 
+source  ~/.localzshrc
+source $DOTFILEDIR/bin/dotfile-env
+
 curl https://sh.rustup.rs -sSf | sh -s --  -y --no-modify-path
 
 ~/.cargo/bin/rustup update
