@@ -7,6 +7,7 @@
   },
   "brew": {
     "packages": [
+      "gcc",
       "git",
       "zsh",
       "grc",
@@ -16,8 +17,7 @@
       "tmux",
       "ansible",
       "ack",
-      "mercurial",
-      "gcc"
+      "mercurial"
     ]
   },
   "cask": {
