@@ -17,7 +17,8 @@
       "tmux",
       "ansible",
       "ack",
-      "mercurial"
+      "mercurial",
+      "neovim"
     ]
   },
   "cask": {
