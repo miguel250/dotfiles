@@ -39,6 +39,9 @@ done
 
 unset config_files
 
+fpath+=~/.zfunc
+mkdir -p ~/.zfunc/
+
 autoload -U promptinit; promptinit
 prompt pure
 
