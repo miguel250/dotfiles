@@ -2,7 +2,7 @@
 set -ex
 
 BINARY_DIR=~/.bin
-BINARY_PATH="$BINARY_PATH/gvm"
+BINARY_PATH="$BINARY_DIR/gvm"
 source  ~/.localzshrc
 eval "$($DOTFILEDIR/bin/dotfile-env)"
 
@@ -15,6 +15,6 @@ then
   rm -f $BINARY_PATH
 fi
 
-mkdir -p $BINARY_PATH
+mkdir -p $BINARY_DIR
 curl -sL -o $BINARY_PATH $DOWNLOAD_URL
 chmod +x $BINARY_PATH
