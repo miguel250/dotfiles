@@ -16,3 +16,6 @@ if __name__ == '__main__':
 
     for key in config['environment_variables']:
         print('export %s="%s"' % (key, config['environment_variables'][key]))
+
+    print('export DOTFILEDIR=%s' % DOTFILEDIR)
+    print('export ZSH=%s/zsh' % DOTFILEDIR)
