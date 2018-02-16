@@ -7,8 +7,8 @@ Using [holman dotfiles](https://github.com/holman/dotfiles),
 #### Install dotfiles
 ```sh
 curl -sL https://goo.gl/yeVw2c | bash
- ~/workspace/dotfiles/scripts/bootstrap --bash
- source ~/bashrc
+~/workspace/dotfiles/scripts/bootstrap --bash
+source ~/.bashrc
 ```
 
 ```sh
