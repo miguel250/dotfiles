@@ -15,7 +15,7 @@ HOME = expanduser('~')
 OS = platform.system()
 CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
 DOTFILEDIR = os.path.realpath('%s/../' % CURRENTPATH)
-BREWPATH = "%s/brew/path.zsh"
+BREWPATH = "%s/brew/path.zsh" % DOTFILEDIR
 
 def installGitConfiguration(name, email, backup, overwrite):
     print("Add git configuration...")
