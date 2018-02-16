@@ -21,7 +21,7 @@ def installGitConfiguration(name, email, backup, overwrite):
     print("Add git configuration...")
 
     # we want to use the git version installed by brew if available
-    returnCode = call(['bash', '-c', 'source %s && git' % BREWPATH, '--version']) # check git version
+    returnCode = call(['bash', '-c', 'source %s && git --version' % BREWPATH]) # check git version
 
     if OS == "Darwin" and returnCode == 69:
         call(['open', '-a', 'xcode'])
@@ -53,23 +53,17 @@ def installGitConfiguration(name, email, backup, overwrite):
             os.remove(filePath)
 
 
-    print("Creating %s" % filePath)
-    file = open(filePath, 'w')
-    file.write('[include]')
     configPath =  os.path.join(DOTFILEDIR, 'git', 'config')
-    file.write('\n\t path = %s' % configPath)
-    file.close()
+    call(['bash', '-c', 'source %s && git config --global include.path %s' % (BREWPATH, configPath)])
 
-    print(name)
     while name == None:
         name = raw_input('Please enter your name: ')
-
-    call(['bash', '-c', 'source %s && git' % BREWPATH, 'config', '--global', 'user.name', name])
+    call(['bash', '-c', 'source %s && git config --global user.name %s' % (BREWPATH, name)])
 
     while email == None:
         email = raw_input('Please enter your email: ')
 
-    call(['bash', '-c', 'source %s && git' % BREWPATH, 'config', '--global', 'user.email', email])
+    call(['bash', '-c', 'source %s && git config --global user.email %s' % (BREWPATH, email)])
 
 def installSymlinks(backup, overwrite=False):
     """
