@@ -6,7 +6,7 @@ Using [holman dotfiles](https://github.com/holman/dotfiles),
 
 #### Install dotfiles
 ```sh
-scripts/bootstrap
+curl -sL https://goo.gl/yeVw2c | bash
 ```
 
 ```sh
