@@ -15,11 +15,13 @@ HOME = expanduser('~')
 OS = platform.system()
 CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
 DOTFILEDIR = os.path.realpath('%s/../' % CURRENTPATH)
+BREWPATH = "%s/brew/path.zsh"
 
 def installGitConfiguration(name, email, backup, overwrite):
     print("Add git configuration...")
 
-    returnCode = call(['git', '--version']) # check git version
+    # we want to use the git version installed by brew if available
+    returnCode = call(['bash', '-c', 'source %s && git' % BREWPATH, '--version']) # check git version
 
     if OS == "Darwin" and returnCode == 69:
         call(['open', '-a', 'xcode'])
@@ -62,12 +64,12 @@ def installGitConfiguration(name, email, backup, overwrite):
     while name == None:
         name = raw_input('Please enter your name: ')
 
-    call(['git', 'config', '--global', 'user.name', name])
+    call(['bash', '-c', 'source %s && git' % BREWPATH, 'config', '--global', 'user.name', name])
 
     while email == None:
         email = raw_input('Please enter your email: ')
 
-    call(['git', 'config', '--global', 'user.email', email])
+    call(['bash', '-c', 'source %s && git' % BREWPATH, 'config', '--global', 'user.email', email])
 
 def installSymlinks(backup, overwrite=False):
     """
