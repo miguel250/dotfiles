@@ -114,7 +114,7 @@ def runInstall():
 
     # install any extra dep needed by
     # package.
-    for file in glob.glob('/extra_deps'):
+    for file in glob.glob('*/extra_deps'):
         os.system(file)
 
 def restore():
