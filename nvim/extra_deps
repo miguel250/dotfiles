@@ -5,5 +5,13 @@ source ~/.localzshrc
 source $DOTFILEDIR/brew/path.zsh
 eval "$($DOTFILEDIR/bin/dotfile-env)"
 
-pip3 install --user --upgrade -r $PROJECT/vimrc/requirements.txt
-pip2 install --user --upgrade -r $PROJECT/vimrc/requirements.txt
+mkdir -p $PROJECT
+mkdir -p ~/.config
+
+if [ ! -d "$PROJECT/vimrc" ]
+then
+  git clone https://github.com/miguel250/vimrc.git $PROJECT/vimrc
+  ln -s $PROJECT/vimrc ~/.config/nvim
+else
+  git -C $PROJECT/vimrc pull
+fi
