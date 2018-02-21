@@ -1,5 +1,5 @@
 
-if test "$(echo $(uname -s)  | cut -c 1-5)" = "Linux"
+if test "$(uname)" = "Linux"
 then
   HOMEBREW_PATH="$HOME/.linuxbrew"
   [[ ":$PATH:" != *":$HOMEBREW_PATH/bin:$HOMEBREW_PATH/sbin:"* ]] && \
