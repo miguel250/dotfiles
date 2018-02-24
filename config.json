@@ -1,7 +1,7 @@
 {
   "environment_variables": {
     "PROJECT": "$HOME/workspace",
-    "GO_VERSION": "1.9.4",
+    "GO_VERSION": "1.10",
     "GVM": "0.0.5",
     "RUST_VERSION": "1.23.0"
   },
