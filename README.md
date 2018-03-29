@@ -4,6 +4,15 @@ Using [holman dotfiles](https://github.com/holman/dotfiles),
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and
 [rtomayko](https://github.com/rtomayko/dotfiles) as examples.
 
+#### Dependecies
+Fedora
+```
+sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools
+```
+
+MacOS
+* Xcode
+
 #### Install dotfiles
 ```sh
 curl -sL https://goo.gl/yeVw2c | bash
