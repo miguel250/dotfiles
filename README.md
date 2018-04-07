@@ -41,3 +41,7 @@ optional arguments:
 ```
 #### iterm2
 - Enable `Applications in terminal may access clipboard` to use copying with osc52.
+
+#### Configuration Variables
+- `WORKSPACE`: working directory. Default: ~/workspace
+- `DOTFILES_NO_AUTO_UPDATE`: Don't automatically update dotfiles. Default: true

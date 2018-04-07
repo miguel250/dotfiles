@@ -37,3 +37,8 @@ else
   git -C $DOTFILES_PATH pull
   $DOTFILES_PATH/scripts/bootstrap -c
 fi
+
+if [ ! -f "$DOTFILES_PATH/.git/hooks/post-merge" ]
+then
+  ln -s $DOTFILES_PATH/scripts/post-merge $DOTFILES_PATH/.git/hooks
+fi
