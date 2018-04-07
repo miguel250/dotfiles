@@ -1,30 +1,39 @@
 #!/usr/bin/env bash
 set -e
 
-if [ ! -d "$HOME/workspace" ]
+export WORKSPACE_PATH="$WORKSPACE"
+
+if [ -z ${WORKSPACE+x} ]
 then
-        mkdir -p "$HOME/workspace"
+  export WORKSPACE_PATH="$HOME/workspace"
 fi
 
-if [ ! -d "$HOME/workspace/dotfiles" ]
+if [ ! -d "$WORKSPACE_PATH" ]
+then
+  mkdir -p "$WORKSPACE_PATH"
+fi
+
+DOTFILES_PATH="$WORKSPACE_PATH/dotfiles"
+
+if [ ! -d "$DOTFILES_PATH" ]
 then
   read -p  "Enter your full name for git: " name </dev/tty
   read -p  "Enter your email for git: " email </dev/tty
 
   curl -sL -o /tmp/master.tar.gz https://github.com/miguel250/dotfiles/archive/master.tar.gz
-  tar -xzf /tmp/master.tar.gz -C ~/workspace
+  tar -xzf /tmp/master.tar.gz -C /tmp
 
   rm -rf /tmp/master.tar.gz
 
-  mv ~/workspace/dotfiles-master ~/workspace/dotfiles
-  ~/workspace/dotfiles/scripts/bootstrap --name "$name" --email "$email"
+  mv /tmp/dotfiles-master "$DOTFILES_PATH"
+  $DOTFILES_PATH/scripts/bootstrap --name "$name" --email "$email"
 
-  source  ~/workspace/dotfiles/brew/path.zsh
+  source  $DOTFILES_PATH/brew/path.zsh
   git clone https://github.com/miguel250/dotfiles.git /tmp/dotfiles
-  mv /tmp/dotfiles/.git ~/workspace/dotfiles
+  mv /tmp/dotfiles/.git $DOTFILES_PATH
   rm -rf /tmp/dotfiles
 else
-  source  ~/workspace/dotfiles/brew/path.zsh
-  git -C ~/workspace/dotfiles pull
-  ~/workspace/dotfiles/scripts/bootstrap -c
+  source  $DOTFILES_PATH/brew/path.zsh
+  git -C $DOTFILES_PATH pull
+  $DOTFILES_PATH/scripts/bootstrap -c
 fi
