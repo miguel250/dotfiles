@@ -13,7 +13,7 @@ then
 
   if [[ ! -d "$go_directory" ]]
   then
-    echo "We might be installing go. This might take a while."
+    echo "We are installing go. This might take a while."
   fi
   eval "$(gvm $GO_VERSION)"
 fi
