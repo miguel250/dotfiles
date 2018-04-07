@@ -15,7 +15,7 @@ MacOS
 
 #### Install dotfiles
 ```sh
-curl -sL https://goo.gl/yeVw2c | bash
+ python2 -c "exec(\"import urllib2\nprint urllib2.urlopen('https://raw.githubusercontent.com/miguel250/dotfiles/master/scripts/install.sh').read()\n\")" | bash
 ~/workspace/dotfiles/scripts/bootstrap --bash
 source ~/.bashrc
 ```
