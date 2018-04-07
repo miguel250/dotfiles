@@ -21,22 +21,5 @@
       "mercurial",
       "neovim"
     ]
-  },
-  "cask": {
-    "applications": [
-      "firefox",
-      "google-chrome",
-      "alfred",
-      "dropbox",
-      "lastpass",
-      "dash",
-      "vagrant",
-      "vagrant-manager",
-      "vmware-fusion",
-      "virtualbox",
-      "iterm2",
-      "evernote",
-      "cyberduck"
-    ]
   }
 }
