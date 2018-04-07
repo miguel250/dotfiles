@@ -36,6 +36,7 @@ else
   source  $DOTFILES_PATH/brew/path.zsh
   git -C $DOTFILES_PATH pull
   $DOTFILES_PATH/scripts/bootstrap -c
+  echo "Don't forget to run reload! and update tmux"
 fi
 
 if [ ! -f "$DOTFILES_PATH/.git/hooks/post-merge" ]
