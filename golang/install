@@ -18,3 +18,5 @@ fi
 mkdir -p $BINARY_DIR
 curl -sL -o $BINARY_PATH $DOWNLOAD_URL
 chmod +x $BINARY_PATH
+
+source "$DOTFILEDIR/golang/env.zsh" # make sure we install go
