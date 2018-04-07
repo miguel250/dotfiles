@@ -1,4 +1,3 @@
-set ex
 if which rustup > /dev/null 2>&1
 then
   plataform="$(uname -m)"
