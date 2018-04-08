@@ -150,6 +150,46 @@ def restore():
             if backupFileExists:
                 print("restoring %s file" % backupFile)
                 os.rename(backupFile, filePath)
+def update_dotfile_bash(migrate=True):
+    bash_file = os.path.join(HOME, '.bashrc')
+    dotfiles_bash = os.path.join(HOME, '.dotfiles.bash')
+
+    if migrate:
+        migrate_bash(bash_file)
+        content = """
+[ -f ~/.dotfiles.bash ] && source ~/.dotfiles.bash
+"""
+        with open(bash_file, 'a+') as f:
+            if content not in f.read():
+                print("Updating .bashrc file...")
+                f.write('%s' % content)
+
+    with open(dotfiles_bash, 'w') as f:
+        f.write("""
+if [[ $- == *i* ]] && [  -d "%s" ]
+then
+    source %s/brew/path.zsh
+    export SHELL=`which zsh`
+    [ -z "$ZSH_VERSION" ] && exec "$SHELL" -l
+fi
+""" % (DOTFILEDIR, DOTFILEDIR))
+
+def migrate_bash(bash_file):
+    """
+    Remove old bash configuration lines
+    """
+
+    lines = []
+    remove_lines = ["source %s/brew/path.zsh" % DOTFILEDIR, "export SHELL=`which zsh`", '[ -z "$ZSH_VERSION" ] && exec "$SHELL" -l']
+    print(remove_lines)
+    with open(bash_file) as f:
+        for line in f.readlines():
+            if line.strip() not in remove_lines:
+                lines.append(line)
+
+    with open(bash_file, 'w') as f:
+        content = "".join(lines)
+        f.write(content)
 
 def main():
     parser = argparse.ArgumentParser(description='Install dotfiles')
@@ -171,19 +211,11 @@ def main():
         return
 
     if args.bash:
-        content = """
-source %s/brew/path.zsh
-export SHELL=`which zsh`
-[ -z "$ZSH_VERSION" ] && exec "$SHELL" -l""" % DOTFILEDIR
-
-        bashFile = os.path.join(HOME, '.bashrc')
-        with open(bashFile, "a+") as file:
-            if content not in file.read():
-                print("Updating .bashrc file...")
-                file.write('%s' % content)
+        update_dotfile_bash()
         return
 
     if args.link:
+        update_dotfile_bash(False)
         installSymlinks(args.backup, args.overwrite)
 
     if args.install:
