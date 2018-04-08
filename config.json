@@ -18,7 +18,8 @@
       "ansible",
       "ack",
       "mercurial",
-      "neovim"
+      "neovim",
+      "fzf"
     ]
   }
 }
