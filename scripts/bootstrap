@@ -168,9 +168,9 @@ def update_dotfile_bash(migrate=True):
         f.write("""
 if [[ $- == *i* ]] && [  -d "%s" ]
 then
-    source %s/brew/path.zsh
-    export SHELL=`which zsh`
-    [ -z "$ZSH_VERSION" ] && exec "$SHELL" -l
+  source %s/brew/path.zsh
+  export SHELL=`which zsh`
+  [ -z "$ZSH_VERSION" ] && exec "$SHELL" -l
 fi
 """ % (DOTFILEDIR, DOTFILEDIR))
 
