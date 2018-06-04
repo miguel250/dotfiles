@@ -4,7 +4,7 @@
     "WORKSPACE": "$PROJECT",
     "GO_VERSION": "1.10.1",
     "GVM": "0.0.5",
-    "RUST_VERSION": "1.26.2"
+    "RUST_VERSION": "1.26.1"
   },
   "brew": {
     "packages": [
