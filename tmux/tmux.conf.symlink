@@ -63,7 +63,7 @@ bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 
 # Add ssh forward socket to env
 set -g update-environment \
-  SSH_ASKPASS\
+  "SSH_ASKPASS\
   SSH_AUTH_SOCK\
   SSH_AGENT_PID\
   SSH_CONNECTION\
