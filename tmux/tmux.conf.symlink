@@ -61,10 +61,27 @@ bind-key L resize-pane -R 10
 # reload configuration
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 
+# Add ssh forward socket to env
+set -g update-environment \
+  "DISPLAY\
+  SSH_ASKPASS\
+  SSH_AUTH_SOCK\
+  SSH_AGENT_PID\
+  SSH_CONNECTION\
+  SSH_CLIENT\
+  SSH_TTY\
+  WINDOWID\
+  XAUTHORITY"
+
+set-hook -g client-attached 'run "$DOTFILEDIR/tmux/renew.sh"'
+set-hook -g client-detached 'run "$DOTFILEDIR/tmux/detached.sh"'
+
+#
 # Clear history
 bind -n C-k send-keys -R \; send-keys C-l \; clear-history
 # -- gruvbox theme -------------------------------------------------------------------
 set-option -ga terminal-overrides ",xterm-256color:Tc"
+set -g default-terminal "tmux-256color"
 
 ## COLORSCHEME: gruvbox dark
 set-option -g status "on"
