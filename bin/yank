@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Copyright (c) 2012 The Chromium OS Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -17,6 +17,7 @@
 #   $ echo "hello world" | osc52.sh
 #
 
+: ${TTY:=`(tty || tty </proc/$PPID/fd/0) 2>/dev/null | grep /dev/`}
 
 # Max length of the OSC 52 sequence.  Sequences longer than this will not be
 # sent to the terminal.
@@ -27,7 +28,7 @@ OSC_52_MAX_SEQUENCE="100000"
 #
 # This is appropriate when running on a raw terminal that supports OSC 52.
 get_osc52() {
-  printf "%b" "\033]52;c;$(base64 | tr -d '\n')\a\n"
+  printf "%b" "\033]52;c;$(base64 | tr -d '\n')\a\n" > "$TTY"
 }
 
 # This function base64's the entire source as a single blob and wraps it in a
@@ -35,7 +36,7 @@ get_osc52() {
 #
 # This is for `tmux` sessions which filters OSC 52 locally.
 get_osc52_tmux() {
-  printf "%b" "\033Ptmux;\033\033]52;c;$(base64 | tr -d '\n')\a\033\\"
+  printf "%b" "\033Ptmux;\033\033]52;c;$(base64 | tr -d '\n')\a\033\\"  > "$TTY"
 }
 
 # This function base64's the entire source, wraps it in a single OSC 52,
@@ -52,14 +53,14 @@ get_osc52_dsc() {
 
   for chunk in ${b64}; do
     if [ -z "${first_chunk}" ]; then
-      printf "%b" "\033P\033]52;c;${chunk}"
+      printf "%b" "\033P\033]52;c;${chunk}" > "$TTY"
       first_chunk="1"
     else
-      printf "%b" "\033\0134\033P${chunk}"
+      printf "%b" "\033\0134\033P${chunk}" > "$TTY"
     fi
   done
 
-  printf "%b" "\a\033\0134"
+  printf "%b" "\a\033\0134" > "$(TTY)"
 }
 
 main() {
@@ -85,7 +86,7 @@ main() {
 
   local len=${#str}
   if [ "${len}" -lt "${OSC_52_MAX_SEQUENCE}" ]; then
-    printf '%s' "${str}"
+    printf '%s' "${str}" > "$TTY"
   else
     echo "ERROR: selection too long to send to terminal: ${len}" >&2
     exit 1
