@@ -19,7 +19,8 @@
       "ack",
       "mercurial",
       "neovim",
-      "fzf"
+      "fzf",
+      "ripgrep"
     ]
   }
 }
