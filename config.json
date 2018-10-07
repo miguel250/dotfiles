@@ -4,7 +4,8 @@
     "WORKSPACE": "$PROJECT",
     "GO_VERSION": "1.11",
     "GVM": "0.1.0",
-    "RUST_VERSION": "1.27.2"
+    "RUST_VERSION": "1.27.2",
+    "ZPLUG_COMMIT": "5336436"
   },
   "brew": {
     "packages": [
@@ -20,6 +21,7 @@
       "mercurial",
       "neovim",
       "fzf",
+      "gawk",
       "ripgrep"
     ]
   }
