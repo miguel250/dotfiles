@@ -13,4 +13,4 @@ else
   git -C $ZPLUG_HOME fetch --all
 fi
 
-git -C $ZPLUG_HOME $ZPLUG_COMMI
+git -C $ZPLUG_HOME checkout $ZPLUG_COMMI
