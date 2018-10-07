@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 source ~/.localzshrc
@@ -6,7 +6,7 @@ eval "$($DOTFILEDIR/bin/dotfile-env)"
 
 export ZPLUG_HOME=$HOME/.zplug
 
-if [ ! -d "$PROJECT/vimrc" ]
+if [ ! -d "$ZPLUG_HOME" ]
 then
   git clone https://github.com/zplug/zplug $ZPLUG_HOME
 else
