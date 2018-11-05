@@ -10,3 +10,6 @@ if [ "$DOTFILES_NO_AUTO_UPDATE"  = true ]
 then
   git -C $DOTFILEDIR pull  > /dev/null
 fi
+
+# set default umask
+umask 022
