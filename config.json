@@ -1,5 +1,6 @@
 {
   "environment_variables": {
+    "BAZEL_VERSION": "0.18.1",
     "PROJECT": "$HOME/workspace",
     "WORKSPACE": "$PROJECT",
     "GO_VERSION": "1.11",
@@ -22,7 +23,8 @@
       "neovim",
       "fzf",
       "gawk",
-      "ripgrep"
+      "ripgrep",
+      "openjdk@8"
     ]
   }
 }

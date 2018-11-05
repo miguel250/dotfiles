@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -ex
+
+BINARY_DIR=~/.bin
+BINARY_PATH="$BINARY_DIR/bazel"
+source  ~/.localzshrc
+eval "$($DOTFILEDIR/bin/dotfile-env)"
+
+
+PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
+DOWNLOAD_URL="https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-linux-x86_64"
+
+if which bazel > /dev/null 2>&1
+then
+  rm -f $BINARY_PATH
+fi
+
+mkdir -p $BINARY_DIR
+curl -sL -o $BINARY_PATH $DOWNLOAD_URL
+chmod +x $BINARY_PATH
+
