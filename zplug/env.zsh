@@ -7,7 +7,9 @@ zplug 'mfaerevaag/wd', \
 
 
 zplug "tarruda/zsh-autosuggestions", \
-  at:ebaf409
+  at:fa5d9c0
+
+export ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 
 zplug "plugins/extract", \
   at:ab9d92f, \
