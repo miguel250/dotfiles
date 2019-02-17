@@ -1,7 +1,7 @@
 source ~/.zplug/init.zsh
 
 zplug 'mfaerevaag/wd', \
-  at:a5d5ced, \
+  at:3cbc583, \
   as:command, use:"wd.sh", \
   hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 
