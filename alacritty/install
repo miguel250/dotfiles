@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -ex
+
+BINARY_DIR=~/.bin
+BINARY_PATH="$BINARY_DIR/alacritty"
+source  ~/.localzshrc
+eval "$($DOTFILEDIR/bin/dotfile-env)"
+
+TAR_NAME="Alacritty-v$ALACRITTY_VERSION-x86_64.tar.gz"
+PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
+DOWNLOAD_URL="https://github.com/jwilm/alacritty/releases/download/v$ALACRITTY_VERSION/$TAR_NAME"
+
+if [ "$PLATFORM" != "linux" ]; then
+  echo "Only linux is currently supported"
+  exit 0
+fi
+
+if which alacritty > /dev/null 2>&1
+then
+  rm -f $BINARY_PATH
+fi
+
+mkdir -p $BINARY_DIR
+curl -sL -o /tmp/$TAR_NAME $DOWNLOAD_URL
+tar -C  $BINARY_DIR -xzf /tmp/$TAR_NAME
+chmod +x $BINARY_PATH
