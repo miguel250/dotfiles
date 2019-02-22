@@ -15,6 +15,14 @@ fi
 
 DOTFILES_PATH="$WORKSPACE_PATH/dotfiles"
 
+
+function get_git_directory {
+  source  $DOTFILES_PATH/brew/path.zsh
+  git clone https://github.com/miguel250/dotfiles.git /tmp/dotfiles
+  mv /tmp/dotfiles/.git $DOTFILES_PATH
+  rm -rf /tmp/dotfiles
+}
+
 if [ ! -d "$DOTFILES_PATH" ]
 then
   read -p  "Enter your full name for git: " name </dev/tty
@@ -27,12 +35,13 @@ then
 
   mv /tmp/dotfiles-master "$DOTFILES_PATH"
   $DOTFILES_PATH/scripts/bootstrap --name "$name" --email "$email"
-
-  source  $DOTFILES_PATH/brew/path.zsh
-  git clone https://github.com/miguel250/dotfiles.git /tmp/dotfiles
-  mv /tmp/dotfiles/.git $DOTFILES_PATH
-  rm -rf /tmp/dotfiles
+  get_git_directory
 else
+  if [ ! -d "$DOTFILES_PATH/.git" ]
+  then
+    get_git_directory
+  fi
+  
   source  $DOTFILES_PATH/brew/path.zsh
   git -C $DOTFILES_PATH pull
   $DOTFILES_PATH/scripts/bootstrap -c
