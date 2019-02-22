@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Temporary hack for migrating scripts to python3
+
+if which python > /dev/null 2>&1
+then
+  python $@
+else
+  python3 $@
+fi

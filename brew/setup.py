@@ -1,4 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/awk BEGIN{a=ARGV[1];sub(/[a-z_.-]+$/,"py2-py3",a);system(a"\t"ARGV[1])}
+
+from __future__ import print_function
+from __future__ import unicode_literals
+
 
 import os
 import platform
@@ -24,7 +28,7 @@ def install_brew():
     if url is not None:
         path = get_brew_path()
         if path is None:
-            print 'Installing Homebrew for you.'
+            print('Installing Homebrew for you.')
             os.system(command)
             return
         else:
@@ -35,7 +39,7 @@ def install_brew():
 
 def get_brew_path():
     process =  Popen('which brew', stdout=PIPE, stderr=PIPE,  shell=True)
-    brew_path = process.communicate()[0].strip("\n")
+    brew_path = process.communicate()[0].decode('utf8').strip("\n")
 
     if brew_path == "":
         return None
@@ -47,7 +51,7 @@ if __name__ == '__main__':
 
     path = get_brew_path()
     if path is not None and os.path.exists(path) is True:
-        print 'Installing brew packages'
+        print('Installing brew packages')
         os.system("brew update")
 
         packagePath = os.path.join(DOTFILEDIR, "config.json")
@@ -69,4 +73,4 @@ if __name__ == '__main__':
 
             nothing.close()
     else:
-        print 'Failed to find brew binary'
+        print('Failed to find brew binary')
