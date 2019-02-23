@@ -1,4 +1,4 @@
-#!/usr/bin/awk BEGIN{a=ARGV[1];sub(/[a-z_.-]+$/,"../bin/py2-py3",a);system(a"\t"ARGV[1]"\t"ARGV[2])}
+#!/usr/bin/env python3
 
 from __future__ import print_function
 from __future__ import unicode_literals
