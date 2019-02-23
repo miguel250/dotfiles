@@ -25,7 +25,8 @@
       "fzf",
       "gawk",
       "ripgrep",
-      "openjdk@8"
+      "openjdk@8",
+      "yarn"
     ]
   }
 }

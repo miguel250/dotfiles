@@ -16,5 +16,4 @@ else
   git -C $PROJECT/vimrc pull
 fi
 
-pip3 install --user --upgrade -r $PROJECT/vimrc/requirements.txt
-pip2 install --user --upgrade -r $PROJECT/vimrc/requirements.txt
+$PROJECT/vimrc/scripts/install_deps
