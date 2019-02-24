@@ -4,4 +4,5 @@ set -ex
 source ~/.localzshrc
 source $DOTFILEDIR/brew/path.zsh
 
+mkdir -p $HOME/.cache
 $DOTFILEDIR/brew/setup.py
