@@ -14,3 +14,4 @@ else
 fi
 
 git -C $ZPLUG_HOME checkout $ZPLUG_COMMIT
+chmod -R 755 $ZPLUG_HOME
