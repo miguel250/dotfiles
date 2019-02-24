@@ -46,7 +46,7 @@ else
   then
     get_git_directory
   fi
-  
+
   source  $DOTFILES_PATH/brew/path.zsh
   git -C $DOTFILES_PATH pull
   if which python > /dev/null 2>&1
@@ -54,7 +54,7 @@ else
     python $DOTFILES_PATH/scripts/bootstrap -c
   else
     python3 $DOTFILES_PATH/scripts/bootstrap -c
-  fi 
+  fi
   echo "Don't forget to run reload! and update tmux"
 fi
 
