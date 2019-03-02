@@ -18,6 +18,10 @@ sudo apt-get install build-essential curl file git
 MacOS
 * Xcode
 
+```
+xcode-select --install
+```
+
 #### Install dotfiles
 ```sh
  python2 -c "exec(\"import urllib2\nprint urllib2.urlopen('https://raw.githubusercontent.com/miguel250/dotfiles/master/scripts/install.sh').read()\n\")" | bash
