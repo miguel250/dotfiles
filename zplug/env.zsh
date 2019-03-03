@@ -20,3 +20,6 @@ if ! zplug check; then
 fi
 
 zplug load
+
+fpath=($ZPLUG_REPOS/mfaerevaag/wd  $fpath)
+rm -f $HOME/.zcompdump; compinit
