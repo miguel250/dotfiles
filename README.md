@@ -21,12 +21,14 @@ MacOS
 #### Install dotfiles
 ```sh
  python2 -c "exec(\"import urllib2\nprint urllib2.urlopen('https://raw.githubusercontent.com/miguel250/dotfiles/master/scripts/install.sh').read()\n\")" | bash
-~/workspace/dotfiles/scripts/bootstrap --bash
+python ~/workspace/dotfiles/scripts/bootstrap --bash
 source ~/.bashrc
 ```
 
 ```sh
 python3 -c "exec(\"from urllib.request import urlopen\nprint(urlopen('https://raw.githubusercontent.com/miguel250/dotfiles/master/scripts/install.sh').read().decode('utf-8'))\n\")" | bash
+python3 ~/workspace/dotfiles/scripts/bootstrap --bash
+source ~/.bashrc
 ```
 
 ```sh
