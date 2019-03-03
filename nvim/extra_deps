@@ -2,8 +2,11 @@
 set -ex
 
 source ~/.localzshrc
+source $DOTFILEDIR/system/path.zsh
 source $DOTFILEDIR/brew/path.zsh
 eval "$($DOTFILEDIR/bin/dotfile-env)"
+source $DOTFILEDIR/golang/path.zsh
+source $DOTFILEDIR/golang/env.zsh
 
 mkdir -p $PROJECT
 mkdir -p ~/.config
