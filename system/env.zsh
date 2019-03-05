@@ -1,6 +1,14 @@
 export EDITOR='nvim'
 export LANG=en_US.UTF-8
-export JAVA_HOME=$(dirname $(dirname $(readlink $(which javac))))
+
+PYTHON="python3"
+if which python > /dev/null 2>&1
+then
+  PYTHON="python"
+fi
+
+realpath="$PYTHON -c 'import os, sys; print os.readlink(sys.argv[1])'"
+export JAVA_HOME=$(dirname $(dirname $(realpath $(which javac))))
 
 if [ -z ${DOTFILES_NO_AUTO_UPDATE+x} ]
 then
