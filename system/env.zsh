@@ -1,6 +1,6 @@
 export EDITOR='nvim'
 export LANG=en_US.UTF-8
-export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+export JAVA_HOME=$(dirname $(dirname $(readlink $(which javac))))
 
 if [ -z ${DOTFILES_NO_AUTO_UPDATE+x} ]
 then
