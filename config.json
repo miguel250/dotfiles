@@ -10,6 +10,12 @@
     "ALACRITTY_VERSION": "0.2.9"
   },
   "brew": {
+    "taps": [
+      "homebrew/cask-versions"
+    ],
+    "casks": [
+      "java8"
+    ],
     "packages": [
       "git",
       "zsh",

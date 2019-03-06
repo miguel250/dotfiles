@@ -61,15 +61,28 @@ if __name__ == '__main__':
 
         for p in config["brew"]["packages"]:
             # check if packages is installed. If it is upgrade it
-
             nothing = open(os.devnull, 'w')
             returnCode = call(['brew', 'ls', p], stdout=nothing, stderr=nothing)
 
-            print(p)
             if returnCode == 1:
                 os.system("brew install %s" % p)
             else:
                 os.system("brew upgrade %s" % p)
+
+            nothing.close()
+
+        for tap in config["brew"]["taps"]:
+            print('Installing brew taps')
+            os.system("brew tap %s" % tap)
+
+        for cask in config["brew"]["casks"]:
+            nothing = open(os.devnull, 'w')
+            returnCode = call(['brew', 'cask', 'ls', cask], stdout=nothing, stderr=nothing)
+
+            if returnCode == 1:
+                os.system("brew cask install %s" % cask)
+            else:
+                os.system("brew cask upgrade %s" % cask)
 
             nothing.close()
     else:
