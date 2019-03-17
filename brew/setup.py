@@ -59,7 +59,14 @@ if __name__ == '__main__':
 
         config = json.loads(f.read())
 
-        for p in config["brew"]["packages"]:
+        brew_os_config = "linux"
+        if OS == 'Darwin':
+            brew_os_config = "mac"
+
+        brew_os_specific =  config["brew"].get(brew_os_config, {})
+        packages = config["brew"]["packages"] + brew_os_specific.get("packages", [])
+
+        for p in packages:
             # check if packages is installed. If it is upgrade it
             nothing = open(os.devnull, 'w')
             returnCode = call(['brew', 'ls', p], stdout=nothing, stderr=nothing)
@@ -71,11 +78,11 @@ if __name__ == '__main__':
 
             nothing.close()
 
-        for tap in config["brew"]["taps"]:
+        for tap in brew_os_specific.get("taps", []):
             print('Installing brew taps')
             os.system("brew tap %s" % tap)
 
-        for cask in config["brew"]["casks"]:
+        for cask in  brew_os_specific.get("casks", []):
             nothing = open(os.devnull, 'w')
             returnCode = call(['brew', 'cask', 'ls', cask], stdout=nothing, stderr=nothing)
 
