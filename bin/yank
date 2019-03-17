@@ -52,6 +52,9 @@ print_seq() {
   tmux*)
     tmux_dcs "${seq}"
     ;;
+  xterm*)
+    tmux_dcs "${seq}"
+    ;;
   *)
     echo "${seq}"
     ;;
