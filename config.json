@@ -15,7 +15,8 @@
         "homebrew/cask-versions"
       ],
       "casks": [
-        "java8"
+        "java8",
+        "android-studio"
       ]
     },
     "linux": {
