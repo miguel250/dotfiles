@@ -9,7 +9,14 @@ fi
 
 realpath="$PYTHON -c 'import os, sys; print os.readlink(sys.argv[1])'"
 export JAVA_HOME=$(dirname $(dirname $(realpath $(which javac))))
-export JAVA_HOME=$(/usr/libexec/java_home -v8) &> /dev/null
+
+plataform="$(uname -m)"
+name="$(echo "$(uname)" | awk '{print tolower($0)}')"
+
+if [[ "$name" == "darwin" ]]
+then
+  export JAVA_HOME=$(/usr/libexec/java_home -v8) &> /dev/null
+fi
 
 if [ -z ${DOTFILES_NO_AUTO_UPDATE+x} ]
 then
