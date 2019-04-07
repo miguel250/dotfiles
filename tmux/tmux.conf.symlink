@@ -32,6 +32,8 @@ bind-key -n M-y run-shell 'tmux save-buffer - | yank > #{pane_tty}'
 # transfer previously copied text (chosen from a menu) to attached terminal
 bind-key -n M-Y choose-buffer 'run-shell "tmux save-buffer -b \"%%%\" - | yank > #{pane_tty}"'
 
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'yank > #{pane_tty}'
+
 bind-key -T edit-mode-vi Up send-keys -X history-up
 bind-key -T edit-mode-vi Down send-keys -X history-down
 unbind-key -T copy-mode-vi Space     ;   bind-key -T copy-mode-vi v send-keys -X begin-selection
@@ -78,7 +80,7 @@ set-hook -g client-detached 'run "$DOTFILEDIR/tmux/detached.sh"'
 bind k send-keys -R \; send-keys C-l \; clear-history
 # -- gruvbox theme -------------------------------------------------------------------
 set-option -ga terminal-overrides ",xterm-256color:Tc"
-set -g default-terminal "tmux-256color"
+set -g default-terminal "xterm-256color"
 
 ## COLORSCHEME: gruvbox dark
 set-option -g status "on"

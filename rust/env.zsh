@@ -3,8 +3,16 @@ then
   plataform="$(uname -m)"
   name="$(echo "$(uname)" | awk '{print tolower($0)}')"
   arch="unknown"
+  license_type="-gnu"
 
-  name="$RUST_VERSION-$plataform-$arch-$name-gnu"
+
+  if [[ "$name" == "darwin" ]]
+  then
+    arch="apple"
+    license_type=""
+  fi
+
+  name="$RUST_VERSION-$plataform-$arch-$name$license_type"
 
   if ! grep -q "$name" $HOME/.rustup/settings.toml
   then

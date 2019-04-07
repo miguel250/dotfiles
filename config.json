@@ -10,6 +10,22 @@
     "ALACRITTY_VERSION": "0.2.9"
   },
   "brew": {
+    "mac": {
+      "taps": [
+        "homebrew/cask-versions"
+      ],
+      "casks": [
+        "java8",
+        "android-studio"
+      ]
+    },
+    "linux": {
+      "taps": [],
+      "casks": [],
+      "packages": [
+        "openjdk@8"
+      ]
+    },
     "packages": [
       "git",
       "zsh",
@@ -25,7 +41,6 @@
       "fzf",
       "gawk",
       "ripgrep",
-      "openjdk@8",
       "yarn"
     ]
   }
