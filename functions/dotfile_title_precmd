@@ -1,0 +1,3 @@
+function dotfile_title_precmd() {
+  title "zsh" "%15<..<%~%<<" "%n@%m: %~"
+}

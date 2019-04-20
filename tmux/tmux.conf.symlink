@@ -1,6 +1,7 @@
 # -- settings  -------------------------------------------------------------------
 set -g history-limit 30000  # scroll History
 set -s escape-time 50       # lower escape timing
+set -g status-interval 5
 
 
 # -- display -------------------------------------------------------------------
@@ -12,6 +13,7 @@ set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 set -g mouse on
 set -g status-keys emacs
 set -g renumber-windows on  # renumber other windows when one is closed
+set -g automatic-rename-format "#{=30:pane_title}#F" # set format for renaming window
 setw -g pane-base-index 1   # make pane numbering consistent with windows
 setw -g automatic-rename on # rename window to reflect current program
 setw -g mode-keys vi

@@ -52,6 +52,7 @@ mkdir -p ~/.zfunc/
 
 autoload -U promptinit; promptinit
 prompt pure
+prompt_pure_set_title() {}
 
 if [ -z "$TMUX" ] ; then
   local session_name="workspace"

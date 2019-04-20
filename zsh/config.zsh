@@ -12,6 +12,14 @@ function chpwd() {
     ls -a
 }
 
+autoload -Uz add-zsh-hook
+
+# make sure we update hooks on source
+add-zsh-hook -D precmd dotfile_title_precmd
+add-zsh-hook -D preexec dotfile_title_preexec
+
+add-zsh-hook precmd dotfile_title_precmd
+add-zsh-hook preexec dotfile_title_preexec
 
 fpath=($DOTFILEDIR/functions $fpath)
 
