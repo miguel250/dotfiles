@@ -5,10 +5,10 @@ zplug 'mfaerevaag/wd', \
   as:command, use:"wd.sh", \
   hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 
-
 zplug "tarruda/zsh-autosuggestions", \
-  at:fa5d9c0
+  at:e9d8231ba7dfbf7afb3f2a57ae00b803b4ae9f83
 
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 
 zplug "plugins/extract", \

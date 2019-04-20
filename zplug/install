@@ -14,5 +14,13 @@ else
 fi
 
 git -C $ZPLUG_HOME checkout $ZPLUG_COMMIT
+
+source $ZPLUG_HOME/bin/zplug-env
+
+if [ -d "$ZPLUG_REPOS" ]
+then
+  rm -rf $ZPLUG_REPOS
+fi
+
 chmod -R 755 $ZPLUG_HOME
 chmod -R 755 $HOME/.zfunc
