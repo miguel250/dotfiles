@@ -26,7 +26,14 @@ then
   cd /tmp/alacritty
   git checkout "v$ALACRITTY_VERSION"
 
+  . /etc/os-release
+
   export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+  if [ $NAME != "Fedora" ]
+  then
+    export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+  fi
+
   cargo build --release
   mv target/release/alacritty $BINARY_PATH
   ln -s $BINARY_PATH $BINARY_DIR/alacritty
