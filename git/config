@@ -17,6 +17,12 @@
 [difftool]
     prompt = false
 
+[color "branch"]
+	current = yellow reverse
+	local = yellow bold
+	remote = green bold
+	plain = red bold
+
 [help]
     autocorrect = 1
 
