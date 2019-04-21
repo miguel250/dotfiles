@@ -8,15 +8,15 @@ eval "$($DOTFILEDIR/bin/dotfile-env)"
 source $DOTFILEDIR/golang/path.zsh
 source $DOTFILEDIR/golang/env.zsh
 
-mkdir -p $PROJECT
+mkdir -p $WORKSPACE
 mkdir -p ~/.config
 
-if [ ! -d "$PROJECT/vimrc" ]
+if [ ! -d "$WORKSPACE/vimrc" ]
 then
-  git clone https://github.com/miguel250/vimrc.git $PROJECT/vimrc
-  ln -s $PROJECT/vimrc ~/.config/nvim
+  git clone https://github.com/miguel250/vimrc.git $WORKSPACE/vimrc
+  ln -s $WORKSPACE/vimrc ~/.config/nvim
 else
-  git -C $PROJECT/vimrc pull
+  git -C $WORKSPACE/vimrc pull
 fi
 
-$PROJECT/vimrc/scripts/install_deps
+$WORKSPACE/vimrc/scripts/install_deps
