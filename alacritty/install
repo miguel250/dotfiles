@@ -18,11 +18,14 @@ fi
 if which alacritty > /dev/null 2>&1
 then
   rm -f $BINARY_PATH
-  rm -f $HOME/.local/share/applications/alacritty.desktop
 fi
 
 mkdir -p $BINARY_DIR
 curl -sL -o /tmp/$TAR_NAME $DOWNLOAD_URL
 tar -C  $BINARY_DIR -xzf /tmp/$TAR_NAME
 chmod +x $BINARY_PATH
-ln -s $DOTFILEDIR/alacritty/alacritty.desktop  $HOME/.local/share/applications/alacritty.desktop
+
+if [ ! -f $HOME/.local/share/applications/alacritty.desktop ]
+then
+  ln -s $DOTFILEDIR/alacritty/alacritty.desktop  $HOME/.local/share/applications/alacritty.desktop
+fi
