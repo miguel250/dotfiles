@@ -12,7 +12,7 @@ sudo yum groupinstall 'Development Tools' && sudo yum install curl file git pyth
 
 Debian/Ubuntu
 ```
-sudo apt-get install build-essential curl file git
+sudo apt-get install build-essential curl file git xclip
 ```
 
 MacOS
