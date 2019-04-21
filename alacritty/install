@@ -2,30 +2,39 @@
 set -ex
 
 BINARY_DIR=~/.bin
-BINARY_PATH="$BINARY_DIR/alacritty"
+BINARY_PATH="$BINARY_DIR/alacritty-v$ALACRITTY_VERSION"
 source  ~/.localzshrc
 eval "$($DOTFILEDIR/bin/dotfile-env)"
 
-TAR_NAME="Alacritty-v$ALACRITTY_VERSION-x86_64.tar.gz"
 PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
-DOWNLOAD_URL="https://github.com/jwilm/alacritty/releases/download/v$ALACRITTY_VERSION/$TAR_NAME"
+MACHINE=$(uname -m)
 
 if [ "$PLATFORM" != "linux" ]; then
   echo "Only linux is currently supported"
   exit 0
 fi
 
-if which alacritty > /dev/null 2>&1
+if ! which alacritty-v$ALACRITTY_VERSION > /dev/null 2>&1
 then
-  rm -f $BINARY_PATH
-fi
+  rm -f "$BINARY_DIR/alacritty*"
 
-mkdir -p $BINARY_DIR
-curl -sL -o /tmp/$TAR_NAME $DOWNLOAD_URL
-tar -C  $BINARY_DIR -xzf /tmp/$TAR_NAME
-chmod +x $BINARY_PATH
+  cd /tmp/
+  rm -rf /tmp/alacritty
+
+  git clone https://github.com/jwilm/alacritty.git
+
+  cd /tmp/alacritty
+  git checkout "v$ALACRITTY_VERSION"
+
+  export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+  cargo build --release
+  mv target/release/alacritty $BINARY_PATH
+  ln -s $BINARY_PATH $BINARY_DIR/alacritty
+  rm -rf /tmp/alacritty
+fi
 
 if [ ! -f $HOME/.local/share/applications/alacritty.desktop ]
 then
   ln -s $DOTFILEDIR/alacritty/alacritty.desktop  $HOME/.local/share/applications/alacritty.desktop
 fi
+
