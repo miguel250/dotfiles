@@ -28,16 +28,17 @@ then
 
   . /etc/os-release
 
-  export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
-  if [ $NAME != "Fedora" ]
+  PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+  if [ "$NAME" != "Fedora" ]
   then
-    export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+    PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
   fi
+
+  export PKG_CONFIG_PATH=$PKG_CONFIG_PATH
 
   cargo build --release
   mv target/release/alacritty $BINARY_PATH
   ln -s $BINARY_PATH $BINARY_DIR/alacritty
-  rm -rf /tmp/alacritty
 fi
 
 if [ ! -f $HOME/.local/share/applications/alacritty.desktop ]
