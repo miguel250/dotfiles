@@ -7,7 +7,7 @@ Using [holman dotfiles](https://github.com/holman/dotfiles),
 #### Dependecies
 Fedora
 ```
-sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools cmake freetype-devel fontconfig-devel xclip
+sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools cmake freetype-devel fontconfig-devel xclip libxcrypt-compat
 ```
 
 Debian/Ubuntu
