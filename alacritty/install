@@ -9,8 +9,8 @@ eval "$($DOTFILEDIR/bin/dotfile-env)"
 PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
 MACHINE=$(uname -m)
 
-if [ "$PLATFORM" != "linux" ]; then
-  echo "Only linux is currently supported"
+if [ "$PLATFORM" != "linux" ]  && [ "$PLATFORM" != "darwin" ]; then
+  echo "Only linux and MacOS is currently supported"
   exit 0
 fi
 
@@ -26,22 +26,33 @@ then
   cd /tmp/alacritty
   git checkout "v$ALACRITTY_VERSION"
 
-  . /etc/os-release
 
-  PKG_CONFIG_PATH=/usr/lib64/pkgconfig
-  if [ "$NAME" != "Fedora" ]
-  then
-    PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+  if [ "$PLATFORM" == "linux" ]; then
+    . /etc/os-release
+
+    PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+    if [ "$NAME" != "Fedora" ]
+    then
+      PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+    fi
+
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH
+
+    cargo build --release
+    mv target/release/alacritty $BINARY_PATH
+    ln -s $BINARY_PATH $BINARY_DIR/alacritty
   fi
 
-  export PKG_CONFIG_PATH=$PKG_CONFIG_PATH
-
-  cargo build --release
-  mv target/release/alacritty $BINARY_PATH
-  ln -s $BINARY_PATH $BINARY_DIR/alacritty
+  if [ "$PLATFORM" == "darwin" ]; then
+    make app
+    cp -fr target/release/osx/Alacritty.app /Applications/
+    ln -s /Applications/Alacritty.app/Contents/MacOS/alacritty $BINARY_PATH
+    ln -s $BINARY_PATH $BINARY_DIR/alacritty
+  fi
 fi
 
-if [ ! -f $HOME/.local/share/applications/alacritty.desktop ]
+if [ "$PLATFORM" == "linux" ] && [ ! -f $HOME/.local/share/applications/alacritty.desktop ]
 then
   ln -s $DOTFILEDIR/alacritty/alacritty.desktop  $HOME/.local/share/applications/alacritty.desktop
 fi
