@@ -1,11 +1,11 @@
 {
   "environment_variables": {
-    "BAZEL_VERSION": "0.26.0",
+    "BAZEL_VERSION": "0.29.0",
     "PROJECTS": "$HOME/workspace",
     "WORKSPACE": "${PROJECTS}",
-    "GO_VERSION": "1.12.5",
-    "GVM": "0.2.0",
-    "RUST_VERSION": "1.35.0",
+    "GO_VERSION": "1.12.9",
+    "GVM": "0.2.1",
+    "RUST_VERSION": "1.37.0",
     "ZPLUG_COMMIT": "5336436",
     "ALACRITTY_VERSION": "0.3.3"
   },
