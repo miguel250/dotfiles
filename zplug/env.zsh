@@ -15,11 +15,23 @@ zplug "plugins/extract", \
   at:586ca16, \
   from:oh-my-zsh
 
+zplug "mafredri/zsh-async", \
+  at: 95c2b15
+
+zplug "sindresorhus/pure", \
+  at: 589de90, \
+  use:pure.zsh, \
+  as:theme
+
 if ! zplug check; then
   zplug install
 fi
 
 zplug load
 
+zstyle ':prompt:pure:prompt:success' color 003
+
 fpath=($ZPLUG_REPOS/mfaerevaag/wd  $fpath)
 rm -f $HOME/.zcompdump; compinit
+
+
