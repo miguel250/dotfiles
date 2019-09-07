@@ -3,7 +3,7 @@
     "BAZEL_VERSION": "0.29.0",
     "PROJECTS": "$HOME/workspace",
     "WORKSPACE": "${PROJECTS}",
-    "GO_VERSION": "1.12.9",
+    "GO_VERSION": "1.13",
     "GVM": "0.2.1",
     "RUST_VERSION": "1.37.0",
     "ZPLUG_COMMIT": "5336436",
