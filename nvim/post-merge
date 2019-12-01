@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Updating vimrc"
+~/workspace/dotfiles/nvim/extra_deps

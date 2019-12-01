@@ -15,8 +15,12 @@ if [ ! -d "$WORKSPACE/vimrc" ]
 then
   git clone https://github.com/miguel250/vimrc.git $WORKSPACE/vimrc
   ln -s $WORKSPACE/vimrc ~/.config/nvim
-else
-  git -C $WORKSPACE/vimrc pull
+fi
+
+if [ ! -f "$WORKSPACE/vimrc/.git/hooks/post-merge" ]
+then
+  ln -s $DOTFILEDIR/nvim/post-merge $WORKSPACE/vimrc/.git/hooks
 fi
 
 $WORKSPACE/vimrc/scripts/install_deps
+
