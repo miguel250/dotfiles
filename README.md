@@ -7,12 +7,12 @@ Using [holman dotfiles](https://github.com/holman/dotfiles),
 #### Dependecies
 Fedora
 ```
-sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools cmake freetype-devel fontconfig-devel xclip libxcrypt-compat
+sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools cmake freetype-devel fontconfig-devel libxcb-devel libxcrypt-compat
 ```
 
 Debian/Ubuntu
 ```
-sudo apt-get install build-essential curl file git cmake pkg-config libfreetype6-dev libfontconfig1-dev xclip
+sudo apt-get install build-essential curl file git cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
 ```
 
 MacOS

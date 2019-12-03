@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -ex
 
-BINARY_DIR=~/.bin
-BINARY_PATH="$BINARY_DIR/alacritty-v$ALACRITTY_VERSION"
 source  ~/.localzshrc
 eval "$($DOTFILEDIR/bin/dotfile-env)"
 
+BINARY_DIR=~/.bin
+BINARY_PATH="$BINARY_DIR/alacritty-v$ALACRITTY_VERSION"
 PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
 MACHINE=$(uname -m)
 
@@ -40,6 +40,7 @@ then
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH
 
     cargo build --release
+    rm -rf $BINARY_PATH/alacritty*
     mv target/release/alacritty $BINARY_PATH
     ln -s $BINARY_PATH $BINARY_DIR/alacritty
   fi
