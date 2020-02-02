@@ -40,7 +40,7 @@ then
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH
 
     cargo build --release
-    rm -rf $BINARY_PATH/alacritty*
+    rm -rf $BINARY_DIR/alacritty*
     mv target/release/alacritty $BINARY_PATH
     ln -s $BINARY_PATH $BINARY_DIR/alacritty
   fi
