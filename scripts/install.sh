@@ -48,7 +48,7 @@ else
   fi
 
   source  $DOTFILES_PATH/brew/path.zsh
-  git -C $DOTFILES_PATH pull
+  git -C $DOTFILES_PATH pull --rebase
   if which python > /dev/null 2>&1
   then
     python $DOTFILES_PATH/scripts/bootstrap -c

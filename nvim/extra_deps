@@ -14,6 +14,10 @@ mkdir -p ~/.config
 if [ ! -d "$WORKSPACE/vimrc" ]
 then
   git clone https://github.com/miguel250/vimrc.git $WORKSPACE/vimrc
+fi
+
+if [ ! -d " ~/.config/nvim" ]
+then
   ln -s $WORKSPACE/vimrc ~/.config/nvim
 fi
 

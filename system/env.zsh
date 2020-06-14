@@ -25,7 +25,7 @@ fi
 
 if [ "$DOTFILES_NO_AUTO_UPDATE"  = true ]
 then
-  git -C $DOTFILEDIR pull  > /dev/null
+  git -C $DOTFILEDIR pull --rebase  > /dev/null
 fi
 
 # set default umask

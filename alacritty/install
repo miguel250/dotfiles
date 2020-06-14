@@ -2,6 +2,7 @@
 set -ex
 
 source  ~/.localzshrc
+source $DOTFILEDIR/rust/path.zsh
 eval "$($DOTFILEDIR/bin/dotfile-env)"
 
 BINARY_DIR=~/.bin
