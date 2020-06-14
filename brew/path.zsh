@@ -14,6 +14,5 @@ if which brew > /dev/null 2>&1
 then
   [[ ":$PATH:" != *"$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"* ]] && \
     export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH" && \
-    fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath) && \
-    export PYTHONPATH=$(brew --prefix)/lib/python3.7/site-packages/
+    fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi

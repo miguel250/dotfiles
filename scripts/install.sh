@@ -34,12 +34,7 @@ then
   rm -rf /tmp/master.tar.gz
 
   mv /tmp/dotfiles-master "$DOTFILES_PATH"
-  if which python > /dev/null 2>&1
-  then
-    python $DOTFILES_PATH/scripts/bootstrap --name "$name" --email "$email"
-  else
-    python3 $DOTFILES_PATH/scripts/bootstrap --name "$name" --email "$email"
-  fi
+  python3 $DOTFILES_PATH/scripts/bootstrap --name "$name" --email "$email"
   get_git_directory
 else
   if [ ! -d "$DOTFILES_PATH/.git" ]
@@ -49,12 +44,7 @@ else
 
   source  $DOTFILES_PATH/brew/path.zsh
   git -C $DOTFILES_PATH pull --rebase
-  if which python > /dev/null 2>&1
-  then
-    python $DOTFILES_PATH/scripts/bootstrap -c
-  else
-    python3 $DOTFILES_PATH/scripts/bootstrap -c
-  fi
+  python3 $DOTFILES_PATH/scripts/bootstrap -c
   echo "Don't forget to run reload! and update tmux"
 fi
 
