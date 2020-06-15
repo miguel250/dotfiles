@@ -7,7 +7,7 @@
     "GVM": "0.2.1",
     "RUST_VERSION": "1.39.0",
     "ZPLUG_COMMIT": "5336436",
-    "ALACRITTY_VERSION": "0.4.0"
+    "ALACRITTY_VERSION": "0.4.3"
   },
   "brew": {
     "mac": {
