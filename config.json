@@ -1,12 +1,12 @@
 {
   "environment_variables": {
-    "BAZEL_VERSION": "0.29.0",
+    "BAZEL_VERSION": "3.3.0",
     "PROJECTS": "$HOME/workspace",
     "WORKSPACE": "$HOME/workspace",
-    "GO_VERSION": "1.13.4",
-    "GVM": "0.2.1",
-    "RUST_VERSION": "1.39.0",
-    "ZPLUG_COMMIT": "5336436",
+    "GO_VERSION": "1.14.4",
+    "GVM": "0.2.2",
+    "RUST_VERSION": "1.44.1",
+    "ZPLUG_COMMIT": "c4dea76",
     "ALACRITTY_VERSION": "0.4.3"
   },
   "brew": {

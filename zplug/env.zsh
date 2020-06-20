@@ -1,25 +1,26 @@
 source ~/.zplug/init.zsh
 
 zplug 'mfaerevaag/wd', \
-  at:303e68f, \
+  at:8b12c38, \
   as:command, use:"wd.sh", \
   hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 
 zplug "tarruda/zsh-autosuggestions", \
-  at:43f3bc4010b2c697d2252fdd8b36a577ea125881
+  at:ae315de
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
-export ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 zplug "plugins/extract", \
-  at:586ca16, \
+  at: 78b07e9, \
   from:oh-my-zsh
 
 zplug "mafredri/zsh-async", \
-  at: 95c2b15
+  at: 490167c
 
 zplug "sindresorhus/pure", \
-  at: 589de90, \
+  at: c42bd35, \
   use:pure.zsh, \
   as:theme
 

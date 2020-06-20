@@ -13,6 +13,7 @@ else
   git -C $ZPLUG_HOME fetch --all
 fi
 
+git -C $ZPLUG_HOME checkout .
 git -C $ZPLUG_HOME checkout $ZPLUG_COMMIT
 
 source $ZPLUG_HOME/bin/zplug-env
