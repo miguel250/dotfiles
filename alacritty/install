@@ -49,7 +49,7 @@ then
   if [ "$PLATFORM" == "darwin" ]; then
     make app
     rm -rf /Applications/Alacritty.app 2> /dev/null
-    rm -rf $BINARY_PATH/alacritty*
+    rm -rf $BINARY_DIR/alacritty*
     cp -fr target/release/osx/Alacritty.app /Applications/
     ln -s /Applications/Alacritty.app/Contents/MacOS/alacritty $BINARY_PATH
     ln -s $BINARY_PATH $BINARY_DIR/alacritty
