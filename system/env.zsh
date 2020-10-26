@@ -35,4 +35,5 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH=$ANDROID_HOME/tools:$PATH
 export PATH=$ANDROID_HOME/tools/bin:$PATH
 export PATH=$ANDROID_HOME/platform-tools:$PATH
-
+export PYTHON_PACKAGE_BINARY="$(python3 -m site --user-base)"
+export PATH=$PYTHON_PACKAGE_BINARY/bin:$PATH

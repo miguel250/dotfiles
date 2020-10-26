@@ -28,7 +28,7 @@
     },
     "packages": [
       "git",
-      "python3",
+      "python@3.8",
       "zsh",
       "grc",
       "coreutils",
