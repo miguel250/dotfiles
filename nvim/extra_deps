@@ -16,9 +16,9 @@ then
   git clone https://github.com/miguel250/vimrc.git $WORKSPACE/vimrc
 fi
 
-if [ ! -d " ~/.config/nvim" ]
+if [ ! -d "$HOME/.config/nvim" ]
 then
-  ln -s $WORKSPACE/vimrc ~/.config/nvim
+  ln -s $WORKSPACE/vimrc $HOME/.config/nvim
 fi
 
 if [ ! -f "$WORKSPACE/vimrc/.git/hooks/post-merge" ]
