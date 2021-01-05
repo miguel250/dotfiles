@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -ex
 
-source ~/.localzshrc
+source ~/.zshinit
 source $DOTFILEDIR/system/path.zsh
 source $DOTFILEDIR/brew/path.zsh
-eval "$($DOTFILEDIR/bin/dotfile-env)"
 source $DOTFILEDIR/golang/path.zsh
 source $DOTFILEDIR/golang/env.zsh
 

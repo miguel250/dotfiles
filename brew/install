@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-source ~/.localzshrc
-source $DOTFILEDIR/brew/path.zsh
+source ~/.zshinit
 
 mkdir -p $HOME/.cache
 $DOTFILEDIR/brew/setup.py

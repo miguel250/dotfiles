@@ -13,12 +13,7 @@ export PATH=$OLD_PATH_RESTORED
 # Find dotfile location
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
-if [[ -a ~/.localzshrc ]]
-then
-  source ~/.localzshrc
-fi
-
-eval "$($DOTFILEDIR/bin/dotfile-env)"
+source ~/.zshinit
 
 typeset -U config_files
 config_files=($DOTFILEDIR/**/*.zsh)
@@ -61,3 +56,9 @@ if [ -z "$TMUX" ] ; then
     tmux -2 new-session -s $session_name
   fi
 fi
+
+if [[ -a ~/.localzshrc ]]
+then
+  source ~/.localzshrc
+fi
+

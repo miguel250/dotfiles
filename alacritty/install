@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 set -ex
 
-source  ~/.localzshrc
+source  ~/.zshinit
 source $DOTFILEDIR/rust/path.zsh
-eval "$($DOTFILEDIR/bin/dotfile-env)"
 
 BINARY_DIR=~/.bin
 BINARY_PATH="$BINARY_DIR/alacritty-v$ALACRITTY_VERSION"

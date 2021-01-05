@@ -17,10 +17,10 @@ zplug "plugins/extract", \
   from:oh-my-zsh
 
 zplug "mafredri/zsh-async", \
-  at: 490167c
+  at: bbbc92b
 
 zplug "sindresorhus/pure", \
-  at: c42bd35, \
+  at: 8ec575c, \
   use:pure.zsh, \
   as:theme
 

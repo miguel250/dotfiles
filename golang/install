@@ -3,8 +3,7 @@ set -ex
 
 BINARY_DIR=~/.bin
 BINARY_PATH="$BINARY_DIR/gvm"
-source  ~/.localzshrc
-eval "$($DOTFILEDIR/bin/dotfile-env)"
+source  ~/.zshinit
 
 
 PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')

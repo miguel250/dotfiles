@@ -63,12 +63,12 @@ def installGitConfiguration(name, email, backup, overwrite):
 
     while name == None:
         name = raw_input('Please enter your name: ')
-    call(['bash', '-c', 'source %s && git config --global user.name %s' % (BREWPATH, name)])
+    call(['bash', '-c', 'source %s && git config --global user.name "%s"' % (BREWPATH, name)])
 
     while email == None:
         email = raw_input('Please enter your email: ')
 
-    call(['bash', '-c', 'source %s && git config --global user.email %s' % (BREWPATH, email)])
+    call(['bash', '-c', 'source %s && git config --global user.email "%s"' % (BREWPATH, email)])
 
 def installSymlinks(backup, overwrite=False):
     """
@@ -105,12 +105,18 @@ def installSymlinks(backup, overwrite=False):
         print("Creating a symlink to %s from %s" % (filePath, homePath))
         os.symlink(homePath, filePath)
 
-    localFile = os.path.join(HOME, '.localzshrc')
+
+def initZsh():
+    localFile = os.path.join(HOME, '.zshinit')
+    exist = os.path.exists(localFile)
+    if exist:
+        os.remove(localFile)
     with open(localFile, "a+") as file:
         if "DOTFILEDIR" not in file.read():
-            print("Updating .localzshrc file...")
+            print("Updating .zshinit file...")
             file.write('export DOTFILEDIR=%s\n' % DOTFILEDIR)
-            file.write('export ZSH=%s/zsh' % DOTFILEDIR)
+            file.write('export ZSH=%s/zsh\n' % DOTFILEDIR)
+            file.write('eval "$($DOTFILEDIR/bin/dotfile-env)"\n')
 
 
 def runInstall():
@@ -222,6 +228,7 @@ def main():
     if args.link:
         update_dotfile_bash(False)
         installSymlinks(args.backup, args.overwrite)
+        initZsh()
 
     if args.install:
         runInstall()

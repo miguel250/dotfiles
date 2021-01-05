@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-source  ~/.localzshrc
-eval "$($DOTFILEDIR/bin/dotfile-env)"
+source  ~/.zshinit
 
 curl https://sh.rustup.rs -sSf | sh -s --  -y --no-modify-path
 
