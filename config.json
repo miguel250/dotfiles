@@ -12,10 +12,11 @@
   "brew": {
     "mac": {
       "taps": [
-        "homebrew/cask-versions"
+        "homebrew/cask-versions",
+        "AdoptOpenJDK/openjdk"
       ],
       "casks": [
-        "java8",
+        "adoptopenjdk/openjdk/adoptopenjdk8",
         "android-studio"
       ]
     },

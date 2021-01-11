@@ -10,6 +10,8 @@ fi
 realpath="$PYTHON -c 'import os, sys; print os.readlink(sys.argv[1])'"
 export JAVA_HOME=$(dirname $(dirname $(realpath $(which javac))))
 
+unset JAVA_HOME
+
 plataform="$(uname -m)"
 name="$(echo "$(uname)" | awk '{print tolower($0)}')"
 

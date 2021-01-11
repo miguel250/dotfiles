@@ -87,9 +87,9 @@ if __name__ == '__main__':
             returnCode = call(['brew', 'cask', 'ls', cask], stdout=nothing, stderr=nothing)
 
             if returnCode == 1:
-                os.system("brew cask install %s" % cask)
+                os.system("brew install --cask %s" % cask)
             else:
-                os.system("brew cask upgrade %s" % cask)
+                os.system("brew upgrade --cask %s" % cask)
 
             nothing.close()
     else:
