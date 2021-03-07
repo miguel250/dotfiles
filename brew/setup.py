@@ -66,6 +66,10 @@ if __name__ == '__main__':
         brew_os_specific =  config["brew"].get(brew_os_config, {})
         packages = config["brew"]["packages"] + brew_os_specific.get("packages", [])
 
+        for tap in brew_os_specific.get("taps", []):
+            print('Installing brew tap %s' % tap)
+            os.system("brew tap %s" % tap)
+
         for p in packages:
             # check if packages is installed. If it is upgrade it
             nothing = open(os.devnull, 'w')
@@ -77,10 +81,6 @@ if __name__ == '__main__':
                 os.system("brew upgrade %s" % p)
 
             nothing.close()
-
-        for tap in brew_os_specific.get("taps", []):
-            print('Installing brew taps')
-            os.system("brew tap %s" % tap)
 
         for cask in  brew_os_specific.get("casks", []):
             nothing = open(os.devnull, 'w')
