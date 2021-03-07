@@ -7,7 +7,7 @@ source  ~/.zshinit
 
 
 PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
-DOWNLOAD_URL="https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-linux-x86_64"
+DOWNLOAD_URL="https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-$PLATFORM-x86_64"
 
 if which bazel > /dev/null 2>&1
 then
