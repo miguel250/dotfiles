@@ -46,6 +46,7 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
+setopt INTERACTIVE_COMMENTS
 
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
