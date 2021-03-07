@@ -13,11 +13,13 @@
     "mac": {
       "taps": [
         "homebrew/cask-versions",
-        "AdoptOpenJDK/openjdk"
+        "AdoptOpenJDK/openjdk",
+        "homebrew/cask-fonts"
       ],
       "casks": [
         "adoptopenjdk/openjdk/adoptopenjdk8",
-        "android-studio"
+        "android-studio",
+        "font-jetbrains-mono-nerd-font"
       ]
     },
     "linux": {
