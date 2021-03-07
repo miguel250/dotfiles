@@ -1,26 +1,26 @@
 source ~/.zplug/init.zsh
 
 zplug 'mfaerevaag/wd', \
-  at:8b12c38, \
+  at:38afa73, \
   as:command, use:"wd.sh", \
   hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 
-zplug "tarruda/zsh-autosuggestions", \
-  at:ae315de
+zplug "zsh-users/zsh-autosuggestions", \
+  at:eff0894
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 zplug "plugins/extract", \
-  at: 78b07e9, \
+  at: 6fbad5b, \
   from:oh-my-zsh
 
 zplug "mafredri/zsh-async", \
-  at: bbbc92b
+  at: a61239d
 
 zplug "sindresorhus/pure", \
-  at: 8ec575c, \
+  at: ff356fa, \
   use:pure.zsh, \
   as:theme
 
@@ -34,5 +34,3 @@ zstyle ':prompt:pure:prompt:success' color 003
 
 fpath=($ZPLUG_REPOS/mfaerevaag/wd  $fpath)
 rm -f $HOME/.zcompdump; compinit
-
-
