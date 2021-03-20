@@ -48,7 +48,8 @@
       "gawk",
       "ripgrep",
       "yarn",
-      "font-jetbrains-mono-nerd-font"
+      "font-jetbrains-mono-nerd-font",
+      "terraform-ls"
     ]
   }
 }
