@@ -6,7 +6,7 @@ zplug 'mfaerevaag/wd', \
   hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 
 zplug "zsh-users/zsh-autosuggestions", \
-  at:eff0894
+  at:a411ef3
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -20,7 +20,7 @@ zplug "mafredri/zsh-async", \
   at: a61239d
 
 zplug "sindresorhus/pure", \
-  at: ff356fa, \
+  at: 5e315bc, \
   use:pure.zsh, \
   as:theme
 
