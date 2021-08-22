@@ -20,7 +20,7 @@ zplug "mafredri/zsh-async", \
   at: a61239d
 
 zplug "sindresorhus/pure", \
-  at: 5e315bc, \
+  at: 35ae5dd, \
   use:pure.zsh, \
   as:theme
 
