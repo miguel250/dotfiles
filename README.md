@@ -4,7 +4,7 @@ Using [holman dotfiles](https://github.com/holman/dotfiles),
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and
 [rtomayko](https://github.com/rtomayko/dotfiles) as examples.
 
-#### Dependecies
+#### Dependencies
 Fedora
 ```
 sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools cmake freetype-devel fontconfig-devel libxcb-devel libxcrypt-compat
