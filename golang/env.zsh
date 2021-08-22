@@ -13,6 +13,7 @@ then
 
   if [[ ! -d "$go_directory" ]]
   then
+    rm -rf $HOME/.gvm/versions 2> /dev/null
     echo "We are installing go. This might take a while."
   fi
   eval "$(gvm $GO_VERSION)"
