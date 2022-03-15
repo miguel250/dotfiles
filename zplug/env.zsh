@@ -1,7 +1,7 @@
 source ~/.zplug/init.zsh
 
 zplug 'mfaerevaag/wd', \
-  at:38afa73, \
+  at:5db678c, \
   as:command, use:"wd.sh", \
   hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 
@@ -20,7 +20,7 @@ zplug "mafredri/zsh-async", \
   at: a61239d
 
 zplug "sindresorhus/pure", \
-  at: 35ae5dd, \
+  at: 5b458ba, \
   use:pure.zsh, \
   as:theme
 
