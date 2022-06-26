@@ -33,7 +33,7 @@
     },
     "packages": [
       "git",
-      "python@3.8",
+      "python",
       "zsh",
       "grc",
       "coreutils",
