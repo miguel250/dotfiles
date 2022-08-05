@@ -26,7 +26,9 @@
       "taps": [
         "linuxbrew/fonts"
       ],
-      "casks": [],
+      "casks": [
+        "font-jetbrains-mono-nerd-font"
+      ],
       "packages": [
         "openjdk@8"
       ]
@@ -44,6 +46,7 @@
       "ack",
       "mercurial",
       "neovim",
+      "node",
       "fzf",
       "gawk",
       "ripgrep",
