@@ -5,7 +5,7 @@
     "WORKSPACE": "$HOME/workspace",
     "GO_VERSION": "1.17.11",
     "GVM": "0.4.0",
-    "RUST_VERSION": "1.53.0",
+    "RUST_VERSION": "1.57.0",
     "ZPLUG_COMMIT": "c4dea76",
     "ALACRITTY_VERSION": "0.10.1"
   },
