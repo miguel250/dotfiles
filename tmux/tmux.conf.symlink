@@ -18,6 +18,12 @@ setw -g pane-base-index 1   # make pane numbering consistent with windows
 setw -g automatic-rename on # rename window to reflect current program
 setw -g mode-keys vi
 
+
+
+# -- OSC 52 clipboard -------------------------------------------------------------------
+set -g set-clipboard on
+set-option -ag terminal-overrides ",xterm-256color:Ms=\\E]52;c;%p2%s\\7"
+
 # -- keymapping ----------------------------------------------------------------------
 # change prefix command to C-z
 set -g prefix C-z
@@ -93,8 +99,8 @@ set-hook -g client-detached 'run "$DOTFILEDIR/tmux/detached.sh"'
 # Clear history
 bind k send-keys -R \; send-keys C-l \; clear-history
 # -- gruvbox theme -------------------------------------------------------------------
-set -ga terminal-overrides  ",xterm-256color:Tc"
-set -g default-terminal "screen-256color"
+set -ag terminal-overrides ",*256col*:colors=256:Tc"
+set -g default-terminal "xterm-256color"
 
 ## COLORSCHEME: gruvbox dark
 set-option -g status "on"
