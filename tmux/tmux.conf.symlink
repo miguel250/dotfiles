@@ -99,8 +99,8 @@ set-hook -g client-detached 'run "$DOTFILEDIR/tmux/detached.sh"'
 # Clear history
 bind k send-keys -R \; send-keys C-l \; clear-history
 # -- gruvbox theme -------------------------------------------------------------------
-set -ag terminal-overrides ",*256col*:colors=256:Tc"
-set -g default-terminal "xterm-256color"
+set -ga terminal-overrides  ",xterm-256color:Tc"
+set -g default-terminal "screen-256color"
 
 ## COLORSCHEME: gruvbox dark
 set-option -g status "on"
