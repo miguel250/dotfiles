@@ -18,5 +18,7 @@ then
   then
     echo "Installing rust $RUST_VERSION"
     rustup default $RUST_VERSION
+    rustup component remove cargo
+    rustup component add cargo
   fi
 fi
