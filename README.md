@@ -12,7 +12,7 @@ sudo yum groupinstall 'Development Tools' && sudo yum install curl file git pyth
 
 Debian/Ubuntu
 ```
-sudo apt-get install make pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+sudo apt-get install make build-essential pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 ```
 
 MacOS
