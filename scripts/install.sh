@@ -42,6 +42,8 @@ else
     get_git_directory
   fi
 
+  mkdir -p ~/.bin
+
   source  $DOTFILES_PATH/brew/path.zsh
   git -C $DOTFILES_PATH pull --rebase
   python3 $DOTFILES_PATH/scripts/bootstrap -c
