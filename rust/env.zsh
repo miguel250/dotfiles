@@ -13,10 +13,15 @@ then
   fi
 
   name="$RUST_VERSION-$plataform-$arch-$name$license_type"
-
   if ! grep -q "$name" $HOME/.rustup/settings.toml
   then
     echo "Installing rust $RUST_VERSION"
+    result="$(rustup toolchain list)"
+    if  echo $result | grep -v -q "no installed toolchains"; then
+      while IFS= read -r toolchain; do
+        rustup toolchain uninstall "$(echo $toolchain | sed 's/(default)//g'| xargs)"
+      done <<< "$result"
+    fi
     rustup default $RUST_VERSION
     rustup component remove cargo
     rustup component add cargo
