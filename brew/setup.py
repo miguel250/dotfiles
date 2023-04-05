@@ -19,6 +19,12 @@ BREW_LINUX_URL = 'https://raw.githubusercontent.com/Linuxbrew/install/master/ins
 def install_brew():
     url = None
     command = ""
+    path = get_brew_path()
+
+    if path is not None:
+        print("Brew already installed")
+        return
+
     if OS == 'Darwin':
         path = None
         if path is None:
@@ -29,14 +35,7 @@ def install_brew():
     elif OS == 'Linux':
         url = BREW_LINUX_URL
         command = 'sh -c "$(curl -fsSL %s)" </dev/null' % url
-        path = get_brew_path()
-        if path is None:
-            print('Installing Homebrew for you.')
-            os.system(command)
-            return
-        else:
-            print("Brew already installed")
-            return
+        os.system(command)
 
     print("Skipping installing brew")
 

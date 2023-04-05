@@ -3,9 +3,9 @@
     "BAZEL_VERSION": "5.4.0",
     "PROJECTS": "$HOME/workspace",
     "WORKSPACE": "$HOME/workspace",
-    "GO_VERSION": "1.20.1",
+    "GO_VERSION": "1.20.3",
     "GVM": "0.5.0",
-    "RUST_VERSION": "1.67.1",
+    "RUST_VERSION": "1.68.2",
     "ZPLUG_COMMIT": "18cfcd4",
     "ALACRITTY_VERSION": "0.12.0"
   },
@@ -13,11 +13,10 @@
     "mac": {
       "taps": [
         "homebrew/cask-versions",
-        "AdoptOpenJDK/openjdk",
         "homebrew/cask-fonts"
       ],
       "casks": [
-        "adoptopenjdk/openjdk/adoptopenjdk8",
+        "temurin8",
         "android-studio",
         "font-jetbrains-mono-nerd-font"
       ]
