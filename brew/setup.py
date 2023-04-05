@@ -13,19 +13,22 @@ OS = platform.system()
 CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
 DOTFILEDIR = os.path.realpath('%s/../' % CURRENTPATH)
 
-BREW_MAC_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'
+BREW_MAC_URL = 'https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
 BREW_LINUX_URL = 'https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh'
 
 def install_brew():
     url = None
+    command = ""
     if OS == 'Darwin':
-        url = BREW_MAC_URL
-        command = 'ruby -e "$(curl -fsSL %s)" </dev/null' % url
+        path = None
+        if path is None:
+            print("Homebrew Needs sudo. Run: ")
+            print('/bin/bash -c "$(curl -fsSL %s)"' % BREW_MAC_URL)
+            print('Then rerun "./script/install.sh"')
+            exit(1)
     elif OS == 'Linux':
         url = BREW_LINUX_URL
         command = 'sh -c "$(curl -fsSL %s)" </dev/null' % url
-
-    if url is not None:
         path = get_brew_path()
         if path is None:
             print('Installing Homebrew for you.')
