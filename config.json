@@ -3,11 +3,11 @@
     "BAZEL_VERSION": "5.4.0",
     "PROJECTS": "$HOME/workspace",
     "WORKSPACE": "$HOME/workspace",
-    "GO_VERSION": "1.20.3",
+    "GO_VERSION": "1.20.4",
     "GVM": "0.5.0",
-    "RUST_VERSION": "1.68.2",
+    "RUST_VERSION": "1.69.0",
     "ZPLUG_COMMIT": "18cfcd4",
-    "ALACRITTY_VERSION": "0.12.0"
+    "ALACRITTY_VERSION": "0.12.1"
   },
   "brew": {
     "mac": {
