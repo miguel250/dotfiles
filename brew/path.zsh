@@ -10,6 +10,14 @@ then
     export PATH="$HOMEBREW_PATH/bin:$HOMEBREW_PATH/sbin:$PATH"
 fi
 
+if test "$(uname -p)" = "arm"
+then
+  HOMEBREW_PATH="/opt/homebrew"
+  [[ ":$PATH:" != *":$HOMEBREW_PATH/bin:$HOMEBREW_PATH/sbin:"* ]] && \
+    export PATH="$HOMEBREW_PATH/bin:$HOMEBREW_PATH/sbin:$PATH"
+fi
+
+
 if which brew > /dev/null 2>&1
 then
   [[ ":$PATH:" != *"$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"* ]] && \

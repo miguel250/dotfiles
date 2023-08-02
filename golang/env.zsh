@@ -7,10 +7,12 @@ then
   if [ $plataform = "x86_64" ]
   then
     arch="amd64"
+ else 
+     arch=$plataform
   fi
 
-  go_directory="$HOME/.gvm/versions/go$GO_VERSION.$name.$arch"
 
+  go_directory="$HOME/.gvm/versions/go$GO_VERSION.$name.$arch"
   if [[ ! -d "$go_directory" ]]
   then
     rm -rf $HOME/.gvm/versions 2> /dev/null

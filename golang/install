@@ -7,7 +7,13 @@ source  ~/.zshinit
 
 
 PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
-DOWNLOAD_URL="https://github.com/andrewkroh/gvm/releases/download/v$GVM/gvm-$PLATFORM-amd64"
+ARCH=$(echo "$(uname -m)" | awk '{print tolower($0)}')
+if [ "$ARCH" = "x86_64" ]
+then
+  ARCH="amd64"
+fi
+
+DOWNLOAD_URL="https://github.com/andrewkroh/gvm/releases/download/v$GVM/gvm-$PLATFORM-$ARCH"
 
 if which gvm > /dev/null 2>&1
 then

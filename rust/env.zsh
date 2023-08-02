@@ -10,6 +10,12 @@ then
   then
     arch="apple"
     license_type=""
+
+    
+    if test "$(uname -p)" = "arm"
+    then 
+        plataform="aarch64"
+    fi
   fi
 
   name="$RUST_VERSION-$plataform-$arch-$name$license_type"
@@ -22,8 +28,9 @@ then
         rustup toolchain uninstall "$(echo $toolchain | sed 's/(default)//g'| xargs)"
       done <<< "$result"
     fi
-    rustup default $RUST_VERSION
     rustup component remove cargo
     rustup component add cargo
+
+    rustup default $RUST_VERSION
   fi
 fi
