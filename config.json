@@ -1,58 +1,58 @@
 {
-  "environment_variables": {
-    "BAZEL_VERSION": "5.4.0",
-    "PROJECTS": "$HOME/workspace",
-    "WORKSPACE": "$HOME/workspace",
-    "GO_VERSION": "1.20.6",
-    "GVM": "0.5.0",
-    "RUST_VERSION": "1.71.0",
-    "ZPLUG_COMMIT": "18cfcd4",
-    "ALACRITTY_VERSION": "0.12.2"
-  },
-  "brew": {
-    "mac": {
-      "taps": [
-        "homebrew/cask-versions",
-        "homebrew/cask-fonts"
-      ],
-      "casks": [
-        "temurin8",
-        "android-studio",
-        "font-jetbrains-mono-nerd-font"
-      ]
+    "environment_variables": {
+        "BAZEL_VERSION": "5.4.0",
+        "PROJECTS": "$HOME/workspace",
+        "WORKSPACE": "$HOME/workspace",
+        "GO_VERSION": "1.21.0",
+        "GVM": "0.5.1",
+        "RUST_VERSION": "1.71.0",
+        "ZPLUG_COMMIT": "18cfcd4",
+        "ALACRITTY_VERSION": "0.12.2"
     },
-    "linux": {
-      "taps": [
-        "linuxbrew/fonts"
-      ],
-      "casks": [
-        "font-jetbrains-mono-nerd-font"
-      ],
-      "packages": [
-        "openjdk@8",
-        "bzip2"
-      ]
-    },
-    "packages": [
-      "git",
-      "python",
-      "zsh",
-      "grc",
-      "coreutils",
-      "wget",
-      "hub",
-      "tmux",
-      "ansible",
-      "ack",
-      "mercurial",
-      "neovim",
-      "node",
-      "fzf",
-      "gawk",
-      "ripgrep",
-      "yarn",
-      "font-jetbrains-mono-nerd-font",
-      "terraform-ls"
-    ]
-  }
+    "brew": {
+        "mac": {
+            "taps": [
+                "homebrew/cask-versions",
+                "homebrew/cask-fonts"
+            ],
+            "casks": [
+                "temurin8",
+                "android-studio",
+                "font-jetbrains-mono-nerd-font"
+            ]
+        },
+        "linux": {
+            "taps": [
+                "linuxbrew/fonts"
+            ],
+            "casks": [
+                "font-jetbrains-mono-nerd-font"
+            ],
+            "packages": [
+                "openjdk@8",
+                "bzip2"
+            ]
+        },
+        "packages": [
+            "git",
+            "python",
+            "zsh",
+            "grc",
+            "coreutils",
+            "wget",
+            "hub",
+            "tmux",
+            "ansible",
+            "ack",
+            "mercurial",
+            "neovim",
+            "node",
+            "fzf",
+            "gawk",
+            "ripgrep",
+            "yarn",
+            "font-jetbrains-mono-nerd-font",
+            "terraform-ls"
+        ]
+    }
 }
