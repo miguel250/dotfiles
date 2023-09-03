@@ -7,7 +7,8 @@
         "GVM": "0.5.1",
         "RUST_VERSION": "1.71.0",
         "ZPLUG_COMMIT": "18cfcd4",
-        "ALACRITTY_VERSION": "0.12.2"
+        "ALACRITTY_VERSION": "0.12.2",
+        "NODEJS_VERSION": "20.3.1"
     },
     "brew": {
         "mac": {
@@ -43,16 +44,14 @@
             "hub",
             "tmux",
             "ansible",
-            "ack",
             "mercurial",
             "neovim",
-            "node",
             "fzf",
             "gawk",
             "ripgrep",
             "yarn",
             "font-jetbrains-mono-nerd-font",
-            "terraform-ls"
+            "nvm"
         ]
     }
 }
