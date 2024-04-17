@@ -5,9 +5,9 @@
         "WORKSPACE": "$HOME/workspace",
         "GO_VERSION": "1.21.0",
         "GVM": "0.5.1",
-        "RUST_VERSION": "1.73.0",
+        "RUST_VERSION": "1.77.2",
         "ZPLUG_COMMIT": "18cfcd4",
-        "ALACRITTY_VERSION": "0.12.2",
+        "ALACRITTY_VERSION": "0.13.2",
         "NODEJS_VERSION": "20.3.1"
     },
     "brew": {

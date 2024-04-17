@@ -56,9 +56,15 @@ then
 fi
 
 
-if [ ! -f $HOME/.alacritty-theme.yml ]
+if [ ! -f $HOME/.alacritty-theme.toml ]
 then
-  ln -s $DOTFILEDIR/alacritty/alacritty-theme.yml $HOME/.alacritty-theme.yml
+  ln -s $DOTFILEDIR/alacritty/alacritty-theme.toml $HOME/.alacritty-theme.toml
+fi
+
+
+if [ ! -f $HOME/.alacritty.toml ]
+then
+  ln -s $DOTFILEDIR/alacritty/alacritty.toml $HOME/.alacritty.toml
 fi
 
 if [ "$PLATFORM" == "linux" ] && [ ! -f $HOME/.local/share/applications/alacritty.desktop ]
