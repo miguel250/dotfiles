@@ -24,7 +24,7 @@ xcode-select --install
 
 #### Install dotfiles
 ```sh
-python -c "exec(\"import urllib2\nprint urllib2.urlopen('https://raw.githubusercontent.com/miguel250/dotfiles/master/scripts/install.sh').read()\n\")" | bash
+python -c "exec(\"import urllib2\nprint urllib2.urlopen('https://raw.githubusercontent.com/miguel250/dotfiles/main/scripts/install.sh').read()\n\")" | bash
 python ~/workspace/dotfiles/scripts/bootstrap --bash
 source ~/.bashrc
 ```
