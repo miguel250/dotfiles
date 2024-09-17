@@ -46,6 +46,15 @@ else
 
   source  $DOTFILES_PATH/brew/path.zsh
   git -C $DOTFILES_PATH pull --rebase
+
+  if [ `git -C $DOTFILES_PATH rev-parse --verify master 2>/dev/null` ]
+  then
+    git branch -m master main
+    git fetch origin
+    git branch -u origin/main main
+    git remote set-head origin -a
+  fi
+
   python3 $DOTFILES_PATH/scripts/bootstrap -c
   echo "Don't forget to run reload! and update tmux"
 fi
