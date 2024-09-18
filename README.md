@@ -7,7 +7,7 @@ Using [holman dotfiles](https://github.com/holman/dotfiles),
 #### Dependencies
 Fedora
 ```
-sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools cmake freetype-devel fontconfig-devel libxcb-devel libxcrypt-compat
+sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools cmake freetype-devel fontconfig-devel libxcb-devel libxcrypt-compat libxkbcommon-devel mesa-libEGL-devel xcb-util-devel xcb-util-keysyms-devel xcb-util-image-devel xcb-util-wm-devel
 ```
 
 Debian/Ubuntu

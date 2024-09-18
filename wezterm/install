@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -ex
+
+source  ~/.zshinit
+source $DOTFILEDIR/rust/path.zsh
+
+BINARY_DIR=~/.bin
+BINARY_NAME="wezterm-$WEZTERM_COMMIT"
+BINARY_PATH="$BINARY_DIR/$BINARY_NAME"
+PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
+MACHINE=$(uname -m)
+
+if [ "$PLATFORM" != "linux" ]  && [ "$PLATFORM" != "darwin" ]; then
+  echo "Only linux and MacOS is currently supported"
+  exit 0
+fi
+
+if ! which $BINARY_NAME > /dev/null 2>&1
+then
+  rm -rf /tmp/wezterm
+
+  git clone --branch=main --recursive https://github.com/wez/wezterm.git /tmp/wezterm
+  cd /tmp/wezterm
+  git checkout $WEZTERM_COMMIT
+  git submodule update --init --recursive
+
+   if [ "$PLATFORM" == "linux" ]; then
+    . /etc/os-release
+
+    export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+    cargo build --release -p wezterm-gui -p wezterm -p wezterm-mux-server -p strip-ansi-escapes
+    rm -rf $BINARY_DIR/wezterm*
+    rm -rf $BINARY_DIR/strip-ansi-escapes
+    
+    cp target/release/wezterm $BINARY_PATH
+    cp target/release/wezterm-mux-server $BINARY_DIR
+    cp target/release/wezterm-gui $BINARY_DIR
+    cp target/release/strip-ansi-escapes $BINARY_DIR
+
+    ln -s $BINARY_PATH $BINARY_DIR/wezterm
+    cp assets/icon/terminal.png $HOME/.local/share/icons/hicolor/128x128/apps/org.wezfurlong.wezterm.png
+    cp assets/wezterm.desktop $HOME/.local/share/applications/org.wezfurlong.wezterm.desktop
+    repl=$(sed -e 's/[&\\/]/\\&/g; s/$/\\/' -e '$s/\\$//' <<<"$BINARY_DIR")
+    sed -i -e "s/TryExec=wezterm/TryExec=$repl\/wezterm/g" $HOME/.local/share/applications/org.wezfurlong.wezterm.desktop
+    sed -i -e "s/Exec=wezterm/Exec=$repl\/wezterm/g" $HOME/.local/share/applications/org.wezfurlong.wezterm.desktop
+
+    gtk-update-icon-cache --ignore-theme-index -f $HOME/.local/share/icons/hicolor
+    update-desktop-database $HOME/.local/share/applications
+  fi
+fi
+
+if [ ! -d $HOME/.config/wezterm ]
+then
+  ln -s $DOTFILEDIR/wezterm/config $HOME/.config/wezterm
+fi
