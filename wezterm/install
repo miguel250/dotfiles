@@ -4,7 +4,7 @@ set -ex
 source  ~/.zshinit
 source $DOTFILEDIR/rust/path.zsh
 
-BINARY_DIR=~/.bin
+BINARY_DIR=$HOME/.bin
 BINARY_NAME="wezterm-$WEZTERM_COMMIT"
 BINARY_PATH="$BINARY_DIR/$BINARY_NAME"
 PLATFORM=$(echo "$(uname)" | awk '{print tolower($0)}')
@@ -18,9 +18,12 @@ fi
 if ! which $BINARY_NAME > /dev/null 2>&1
 then
   rm -rf /tmp/wezterm
-
-  git clone --branch=main --recursive https://github.com/wez/wezterm.git /tmp/wezterm
+  mkdir /tmp/wezterm
   cd /tmp/wezterm
+
+  git init --initial-branch=main
+  git remote add origin https://github.com/wez/wezterm.git
+  git fetch --depth 1 origin $WEZTERM_COMMIT
   git checkout $WEZTERM_COMMIT
   git submodule update --init --recursive
 
@@ -32,7 +35,7 @@ then
     cargo build --release -p wezterm-gui -p wezterm -p wezterm-mux-server -p strip-ansi-escapes
     rm -rf $BINARY_DIR/wezterm*
     rm -rf $BINARY_DIR/strip-ansi-escapes
-    
+
     cp target/release/wezterm $BINARY_PATH
     cp target/release/wezterm-mux-server $BINARY_DIR
     cp target/release/wezterm-gui $BINARY_DIR
@@ -47,6 +50,33 @@ then
 
     gtk-update-icon-cache --ignore-theme-index -f $HOME/.local/share/icons/hicolor
     update-desktop-database $HOME/.local/share/applications
+  fi
+
+  if [ "$PLATFORM" == "darwin" ]; then
+      cargo build --release -p wezterm-gui -p wezterm -p wezterm-mux-server -p strip-ansi-escapes
+      temp_dir=macos-app
+      mkdir $temp_dir
+      cp -r assets/macos/WezTerm.app $temp_dir
+
+      rm $temp_dir/WezTerm.app/*.dylib
+      mkdir -p $temp_dir/WezTerm.app/Contents/MacOS
+      mkdir -p $temp_dir/WezTerm.app/Contents/Resources
+      cp -r assets/shell-integration/* $temp_dir/WezTerm.app/Contents/Resources
+      cp -r assets/shell-completion $temp_dir/WezTerm.app/Contents/Resources
+
+      cp target/release/wezterm-mux-server $temp_dir/WezTerm.app/Contents/MacOS/wezterm-mux-server
+      cp target/release/wezterm-gui $temp_dir/WezTerm.app/Contents/MacOS/wezterm-gui
+      cp target/release/strip-ansi-escapes $temp_dir/WezTerm.app/Contents/MacOS/strip-ansi-escapes
+      cp target/release/wezterm $temp_dir/WezTerm.app/Contents/MacOS/wezterm
+      cp -fr $temp_dir/WezTerm.app /Applications/
+
+      rm -rf $BINARY_DIR/wezterm* || true
+      rm -rf $BINARY_DIR/strip-ansi-escapes || true
+      ln -s  /Applications/WezTerm.app/Contents/MacOS/wezterm $BINARY_DIR
+      ln -s  /Applications/WezTerm.app/Contents/MacOS/wezterm-mux-server  $BINARY_DIR
+      ln -s  /Applications/WezTerm.app/Contents/MacOS/wezterm-gui  $BINARY_DIR
+      ln -s  /Applications/WezTerm.app/Contents/MacOS/strip-ansi-escapes   $BINARY_DIR
+      ln -s  /Applications/WezTerm.app/Contents/MacOS/wezterm $BINARY_PATH
   fi
 fi
 

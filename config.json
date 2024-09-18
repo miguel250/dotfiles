@@ -9,7 +9,7 @@
         "ZPLUG_COMMIT": "18cfcd4",
         "ALACRITTY_VERSION": "0.13.2",
         "NODEJS_VERSION": "20.3.1",
-        "WEZTERM_COMMIT": "5046fc2"
+        "WEZTERM_COMMIT": "832c533c5f9e8d1c3315f2fbf96c125927a232f7"
     },
     "brew": {
         "mac": {
