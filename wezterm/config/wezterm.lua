@@ -11,8 +11,8 @@ config.font =
     }
 
 config.disable_default_key_bindings = true
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
-config.window_background_opacity = 0.8
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE|MACOS_FORCE_ENABLE_SHADOW"
+config.window_background_opacity = 0.7
 
 local default_mods = "CTRL"
 if wezterm.target_triple:find("darwin") ~= nil then
@@ -41,6 +41,9 @@ wezterm.on(
 config.window_padding = {
     top = '1.2cell',
 }
+
+
+config.color_scheme = "Catppuccin Mocha"
 
 local act = wezterm.action
 config.keys = {
