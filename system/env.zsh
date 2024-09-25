@@ -39,3 +39,5 @@ export PATH=$ANDROID_HOME/tools/bin:$PATH
 export PATH=$ANDROID_HOME/platform-tools:$PATH
 export PYTHON_PACKAGE_BINARY="$(python3 -m site --user-base)"
 export PATH=$PYTHON_PACKAGE_BINARY/bin:$PATH
+export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
+
