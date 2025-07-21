@@ -26,8 +26,8 @@ fpath=($DOTFILEDIR/functions $fpath)
 autoload -U $DOTFILEDIR/functions/*(:t)
 
 HISTFILE=~/.zsh_history
-HISTSIZE=50000
-SAVEHIST=50000
+HISTSIZE=5000000
+SAVEHIST=$HISTSIZE
 HISTIGNORE="ls:ll:la:lla:pwd:exit:clear:z"
 
 setopt NO_BG_NICE
@@ -43,15 +43,21 @@ setopt CORRECT
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY SHARE_HISTORY
+setopt INC_APPEND_HISTORY 
+setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt INTERACTIVE_COMMENTS
+
+setopt histignorealldups
 
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
 setopt complete_aliases
+
+# cd into directories
+setopt autocd
 
 zle -N newtab
 
