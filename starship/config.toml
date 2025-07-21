@@ -1,0 +1,25 @@
+add_newline = true
+command_timeout = 200
+
+format = "[$username$hostname](light blue) $directory$character"
+right_format = "$git_branch$git_status$cmd_duration$python$ruby"
+
+[username]
+show_always = true
+format = "[$user]($style)"
+style_user = "blue"
+style_root = "red bold"
+
+[hostname]
+ssh_only = true
+format = "$ssh_symbol$hostname"
+
+[directory]
+truncation_length = 4
+truncation_symbol = "…/"
+
+[character]
+success_symbol = "[❯](003)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+

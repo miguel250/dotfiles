@@ -6,7 +6,7 @@ zplug 'mfaerevaag/wd', \
   hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 
 zplug "zsh-users/zsh-autosuggestions", \
-  at:9b02729
+  at: a50468
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -16,19 +16,12 @@ zplug "plugins/extract", \
   at:fe4b565, \
   from:oh-my-zsh
 
-zplug "mafredri/zsh-async", \
-  at:ee1d11b
-
-zplug "sindresorhus/pure", \
-  at:87e6f5d, \
-  use:pure.zsh, \
-  as:theme
-
 if ! zplug check; then
   zplug install
 fi
 
 zplug load
+
 
 zstyle ':prompt:pure:prompt:success' color 003
 

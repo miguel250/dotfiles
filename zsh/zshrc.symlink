@@ -62,3 +62,4 @@ then
   source ~/.localzshrc
 fi
 
+eval "$(starship init zsh)"

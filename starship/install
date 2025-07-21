@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -ex
+
+source ~/.zshinit
+source $DOTFILEDIR/system/path.zsh
+
+mkdir -p ~/.config/
+
+
+CONFIG_FILE=~/.config/starship.toml
+
+ln -sf $DOTFILEDIR/starship/config.toml $CONFIG_FILE
