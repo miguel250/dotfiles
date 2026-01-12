@@ -26,8 +26,9 @@ fpath=($DOTFILEDIR/functions $fpath)
 autoload -U $DOTFILEDIR/functions/*(:t)
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
+HISTIGNORE="ls:ll:la:lla:pwd:exit:clear:z"
 
 setopt NO_BG_NICE
 setopt NO_HUP
@@ -35,7 +36,7 @@ setopt NO_LIST_BEEP
 setopt LOCAL_OPTIONS
 setopt LOCAL_TRAPS
 setopt HIST_VERIFY
-setopt SHARE_HISTORY
+setopt SHARE_HISTORY INC_APPEND_HISTORY HIST_IGNORE_DUPS
 setopt EXTENDED_HISTORY
 setopt PROMPT_SUBST
 setopt CORRECT
