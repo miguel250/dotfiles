@@ -1,5 +1,7 @@
 if which fzf > /dev/null 2>&1
 then
+  source <(fzf --zsh)
+
   # Auto-completion
   # ---------------
   [[ $- == *i* ]] && source "$(fzf-share)/completion.zsh" 2> /dev/null
