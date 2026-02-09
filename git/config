@@ -1,13 +1,14 @@
 [init]
     defaultBranch = main
 
+[core]
+    excludesfile = ~/.gitignore
+
 [color]
     diff = auto
     status = auto
     branch = auto
     ui = true
-    excludesfile = ~/.gitignore
-
 
 [alias]
     co = checkout
@@ -23,10 +24,10 @@
     prompt = false
 
 [color "branch"]
-	current = yellow reverse
-	local = yellow bold
-	remote = green bold
-	plain = red bold
+    current = yellow reverse
+    local = yellow bold
+    remote = green bold
+    plain = red bold
 
 [help]
     autocorrect = 1
@@ -36,4 +37,4 @@
     autoSetupRemote = true
 
 [pull]
-	rebase = true
+    rebase = true
