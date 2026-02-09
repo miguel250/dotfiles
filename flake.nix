@@ -39,8 +39,10 @@
       homeManagerModules.default =
         { ... }:
         {
+          home.file.".tmux.conf".source = ./tmux/tmux.conf.symlink;
           home.file.".dotfile_zshrc".source = ./zsh/zshrc.symlink;
           home.file.".config/starship.toml".source = ./starship/config.toml;
+          home.file.".gitignore".source = ./git/gitignore.symlink;
         };
     };
 }
