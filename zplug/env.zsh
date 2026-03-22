@@ -1,4 +1,7 @@
-source ~/.zplug/init.zsh
+if [ -d "~/.zplug/init.zsh" ]
+then
+  source ~/.zplug/init.zsh
+fi
 
 zplug 'mfaerevaag/wd', \
   at:31a6264, \
